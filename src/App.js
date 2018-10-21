@@ -3,6 +3,7 @@ import page from 'page'
 import * as css from 'classnames'
 
 import Header from './components/Header'
+import Main from './components/Main'
 
 export default class App extends Component {
   constructor(props) {
