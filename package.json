@@ -1,0 +1,31 @@
+{
+  "name": "nickel-react",
+  "version": "1.0.0",
+  "private": true,
+  "homepage": "https://nickelcollective.com",
+  "dependencies": {
+    "autoprefixer": "^7.1.5",
+    "classnames": "^2.2.5",
+    "css-mqpacker": "^6.0.1",
+    "cssnano": "^3.10.0",
+    "page": "^1.7.1",
+    "postcss-cli": "^4.1.1",
+    "postcss-import": "^11.0.0",
+    "postcss-inline-media": "^0.0.1",
+    "postcss-nested": "^2.1.2",
+    "postcss-simple-vars": "^4.1.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-scripts": "1.1.1",
+    "react-swipeable-views": "^0.13.0",
+    "react-waypoint": "^8.0.3"
+  },
+  "scripts": {
+    "css:watch": "postcss src/styles/index.css -o src/index.css -w",
+    "css:build": "postcss src/styles/index.css -o src/index.css",
+    "start": "yarn 'css:watch' & react-scripts start",
+    "build": "yarn 'css:build' && react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
