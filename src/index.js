@@ -1,13 +1,13 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-import './index.css'
-import App from './App'
-import registerServiceWorker from './registerServiceWorker'
+import './index.css';
+import db from './testdb.js';
+
+import App from './App';
+import registerServiceWorker from './registerServiceWorker';
 
 
-// Render
-ReactDOM.render(<App />, document.getElementById('root'))
-// ----------------------------------------------------------------------------
+ReactDOM.render(<App data={db} />, document.getElementById('root'));
 
-registerServiceWorker()
+registerServiceWorker();

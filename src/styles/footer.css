@@ -1,0 +1,40 @@
+.footer-wrap {
+  position: relative;
+  display: block;
+}
+
+.footer-container {
+  position: relative;
+  display: grid;
+  height: 80px;
+  padding: 0 20px;
+  grid-template-columns: repeat(2, minmax(100px,1fr));
+  grid-column-gap: 16px;
+
+  @media (min-width: 768px) and (max-width: 1439px) {
+    grid-template-columns: repeat(8, minmax(60px,1fr));
+    grid-column-gap: 16px;
+  }
+
+  @media (min-width: 1440px) {
+    padding: 0 32px;
+    grid-template-columns: repeat(12, minmax(100px,1fr));
+  }
+}
+
+.footer-block {
+  position: relative;
+  display: block;
+  white-space: nowrap;
+  grid-column: span 2;
+  font-size: 16px;
+  line-height: 80px;
+
+  @media (min-width: 768px) and (max-width: 1439px) {
+    grid-column: span 6;
+  }
+
+  @media (min-width: 1440px) {
+    grid-column: span 12;
+  }
+}

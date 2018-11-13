@@ -4,7 +4,9 @@
   "private": true,
   "homepage": "https://nickelcollective.com",
   "dependencies": {
+    "alt": "^0.18.6",
     "autoprefixer": "^7.1.5",
+    "axios": "^0.18.0",
     "classnames": "^2.2.5",
     "css-mqpacker": "^6.0.1",
     "cssnano": "^3.10.0",
@@ -14,11 +16,17 @@
     "postcss-inline-media": "^0.0.1",
     "postcss-nested": "^2.1.2",
     "postcss-simple-vars": "^4.1.0",
+    "prop-types": "^15.6.2",
     "react": "^16.2.0",
+    "react-aspect-ratio": "^1.0.31",
     "react-dom": "^16.2.0",
+    "react-preload": "^0.6.0",
+    "react-redux": "^5.1.0",
     "react-scripts": "1.1.1",
     "react-swipeable-views": "^0.13.0",
-    "react-waypoint": "^8.0.3"
+    "react-waypoint": "^8.0.3",
+    "redux": "^4.0.1",
+    "redux-form": "^7.4.2"
   },
   "scripts": {
     "css:watch": "postcss src/styles/index.css -o src/index.css -w",
