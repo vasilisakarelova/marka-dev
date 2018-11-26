@@ -9,39 +9,76 @@
     height: 100%;
   }
 
+  &.is-floating {
+    @media (min-width: 768px) {
+      z-index: 4;
+    }
+
+    .header-container {
+      @media (min-width: 768px) and (max-width: 1439px) {
+        grid-template-columns: 100%;
+        width: 100px;
+        height: 100%;
+        padding-right: 0;
+        grid-template-rows: repeat(9,minmax(16px,1fr));
+        grid-row-gap: 29px;
+        grid-column-gap: 0;
+      }
+
+      @media (min-width: 1440px) {
+        grid-template-columns: 100%;
+        width: 100px;
+        height: 100%;
+        padding-right: 0;
+        grid-row-gap: 29px;
+        grid-column-gap: 0;
+        grid-template-rows: repeat(9,minmax(60px,1fr));
+      }
+    }
+  }
+
   @media (min-width: 1920px) {
     height: 80px;
   }
 }
 
 .header-container {
-  position: relative;
-  display: grid;
+  position: fixed;
+  z-index: 2;
+  width: 100%;
   height: 60px;
-  padding: 0 20px;
-  grid-template-columns: repeat(2, minmax(100px,1fr));
-  grid-column-gap: 16px;
-
-  @media (min-width: 768px) and (max-width: 1439px) {
-    grid-template-columns: repeat(8, minmax(60px,1fr));
-    grid-column-gap: 16px;
-  }
-
-  @media (min-width: 1440px) {
-    padding: 0 32px;
-    grid-template-columns: repeat(12, minmax(100px,1fr));
-  }
+  transition: background-color .4s linear, opacity .4s linear;
 }
 
 .header-block-wrap {
   position: relative;
   display: flex;
 
+  &.is-floating {
+    transition: opacity .4s linear;
+    flex-direction: column;
+    grid-column: 1 !important;
+    opacity: 1 !important;
+  }
+
   &:nth-of-type(2) {
     grid-column: 1;
 
+    &.is-floating {
+      grid-row: span 8;
+      text-transform: uppercase;
+
+      @media (min-width: 768px) and (max-width: 1439px) {
+        grid-row: span 5;
+      }
+
+      @media (min-width: 1440px) {
+        grid-row: span 5;
+      }
+    }
+
     @media (min-width: 768px) and (max-width: 1439px) {
-      grid-column: span 3;
+      grid-column: span 5;
     }
 
     @media (min-width: 1440px) {
@@ -53,16 +90,39 @@
     grid-column: 2;
     justify-content: flex-end;
 
+    &.is-floating {
+      grid-row: span 3;
+      justify-content: flex-start;
+
+      .header-block-link-small {
+        line-height: 1.3;
+      }
+
+      .header-block:last-of-type {
+        padding-top: 10px;
+      }
+
+      @media (min-width: 1440px) {
+        grid-row: span 2;
+      }
+    }
+
     @media (min-width: 768px) and (max-width: 1439px) {
-      grid-column-start: 5;
-      grid-column-end: 7;
-      justify-content: space-between;
+      grid-column-start: 7;
+      grid-column-end: 9;
+
+      .header-block {
+        padding-left: 15px;
+      }
     }
 
     @media (min-width: 1440px) {
       grid-column-start: 11;
       grid-column-end: 13;
-      justify-content: space-between;
+
+      .header-block {
+        padding-left: 25px;
+      }
     }
   }
 }
@@ -118,22 +178,41 @@
   }
 
   &-arrow {
-    display: none;
     position: relative;
-    font-family: Helvetica;
-    font-size: 24px;
-    color: #000000;
-    letter-spacing: 0.3px;
-    line-height: 32px;
-    transition: all .3s linear;
+    display: block;
+    transform: rotate(-90deg);
+    transition: transform .3s linear;
 
-    @media (min-width: 768px) {
-      display: block;
-    }
+    &-wrap {
+      display: none;
+      position: relative;
+      font-family: Helvetica;
+      font-size: 24px;
+      color: #000000;
+      letter-spacing: 0.3px;
+      line-height: 32px;
+      transition: all .3s linear;
 
-    &.is-hidden {
-      opacity: 0;
-      visibility: hidden;
+      @media (min-width: 768px) {
+        display: flex;
+        align-items: center;
+      }
+
+      &.is-hidden {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      &.is-visible {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      &.is-index {
+        .header-block-arrow {
+          transform: rotate(0deg);
+        }
+      }
     }
   }
 }
@@ -148,20 +227,17 @@
 
   &-wrap {
     position: fixed;
+    z-index: 2;
     display: block;
-    transition: all .4s ease-in-out;
+    width: 100%;
+    text-align: center;
+    transition: transform .4s ease-in-out, top .4s ease-in-out;
     top: 50%;
     transform: translateY(-50%);
 
     &.is-animation-ended {
       top: 60px;
       transform: none;
-    }
-
-    &.is-arrived {
-      position: relative;
-      transform: none;
-      top: auto;
     }
   }
 }

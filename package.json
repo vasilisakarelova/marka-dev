@@ -2,7 +2,7 @@
   "name": "nickel-react",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://nickelcollective.com",
+  "homepage": "https://marka.moscow/new/",
   "dependencies": {
     "alt": "^0.18.6",
     "autoprefixer": "^7.1.5",
@@ -20,10 +20,12 @@
     "react": "^16.2.0",
     "react-aspect-ratio": "^1.0.31",
     "react-dom": "^16.2.0",
+    "react-modal": "^3.6.1",
     "react-preload": "^0.6.0",
     "react-redux": "^5.1.0",
     "react-scripts": "1.1.1",
     "react-swipeable-views": "^0.13.0",
+    "react-typist": "^2.0.4",
     "react-waypoint": "^8.0.3",
     "redux": "^4.0.1",
     "redux-form": "^7.4.2"
