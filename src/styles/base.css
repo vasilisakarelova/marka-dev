@@ -81,14 +81,10 @@ button {
   grid-column-gap: 16px;
   grid-row-gap: 32px;
 
-  @media (min-width: 768px) and (max-width: 1439px) {
-    grid-template-columns: repeat(8, minmax(60px,1fr));
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(12, minmax(65px,1fr));
     grid-column-gap: 16px;
-  }
-
-  @media (min-width: 1440px) {
     padding: 0 32px;
-    grid-template-columns: repeat(12, minmax(100px,1fr));
   }
 }
 
@@ -100,15 +96,10 @@ button {
   grid-column-gap: 16px;
   grid-row-gap: 32px;
 
-  @media (min-width: 768px) and (max-width: 1439px) {
-    grid-column: 2 / span 7;
-    grid-template-columns: repeat(7, minmax(60px,1fr));
-    grid-column-gap: 16px;
-  }
-
-  @media (min-width: 1440px) {
+  @media (min-width: 1024px) {
     grid-column: 2 / span 11;
-    grid-template-columns: repeat(11, minmax(100px,1fr));
+    grid-template-columns: repeat(11, minmax(65px,1fr));
+    grid-column-gap: 16px;
   }
 }
 
@@ -121,6 +112,18 @@ button {
   transition: background .35s linear;
 }
 
+.scroll-inner {
+  position: relative;
+  display: block;
+  padding-bottom: 44px;
+
+  @media (min-width: 1024px) {
+    &.is-index {
+      padding-bottom: 280px;
+    }
+  }
+}
+
 .border-space-saver-inner {
   padding: 16px 0;
   height: 100%;
@@ -129,7 +132,7 @@ button {
 .border-wrap {
   border-radius: 16.6px;
   background-color: #fff;
-  box-shadow: 0 0 16px 0px #000000;
+  box-shadow: 0 0 16px 0 rgba(0,0,0,0.08), 0 0 4px 0 rgba(0,0,0,0.16);
   padding: 16px 0;
 }
 
@@ -138,13 +141,37 @@ button {
   z-index: 3;
   transform: translateY(100vh);
   transition: all .4s linear;
+  padding-bottom: 80px;
 
   &.is-arrived {
-    transform: translateY(calc(220px + 60px));
+    transform: translateY(calc(55px + 60px));
+
+    @media (min-width: 414px) and (max-width: 767px) {
+      transform: translateY(calc(60px - 16px));
+
+      &.is-index {
+        transform: translateY(calc(70px + 60px));
+      }
+    }
+
+    @media (min-width: 768px) and (max-width: 1439px) {
+      transform: translateY(calc(60px - 16px));
+
+      &.is-index {
+        transform: translateY(calc(15vw + 60px));
+      }
+    }
+
+    @media (min-width: 1440px) {
+      transform: translateY(calc(60px - 16px));
+
+      &.is-index {
+        transform: translateY(calc(220px + 60px));
+      }
+    }
   }
 
   &.is-ready {
-    /*transform: none;*/
     transition: none;
   }
 }
@@ -162,5 +189,23 @@ button {
     color: transparent;
     -webkit-text-stroke: #fff;
     -webkit-text-stroke-width: 1px;
+  }
+}
+
+.scroll-top-btn {
+  position: fixed;
+  z-index: 99;
+  font-family: 'TStar Pro Bold';
+  font-size: 24px;
+  letter-spacing: -4px;
+  bottom: 20px;
+  right: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .3s linear;
+
+  &.is-visible {
+    opacity: 1;
+    visibility: visible;
   }
 }

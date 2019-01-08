@@ -1,0 +1,209 @@
+.main-list-tags {
+  position: sticky;
+  top: 0;
+  padding-left: 20px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  overflow-y: hidden;
+  overflow-x: visible;
+  z-index: 2;
+
+  @media (min-width: 1024px) {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+
+  &-container {
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    grid-column: span 2;
+    height: 36px;
+
+    @media (min-width: 1024px) {
+      grid-column: 2 / span 11;
+      height: 48px;
+    }
+
+    &.is-fixed {
+      .main-list-tags-inner {
+        position: fixed;
+        transform: translateY(-115px);
+
+        @media (min-width: 414px) and (max-width: 1023px) {
+          transform: translateY(-130px);
+        }
+
+        @media (min-width: 1024px) {
+          transform: translateY(-280px);
+        }
+      }
+    }
+
+    &:not(.is-fixed) {
+      .main-list-tags-inner {
+        top: auto !important;
+        width: 100% !important;
+      }
+    }
+  }
+
+  &-inner {
+    position: relative;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-content: space-between;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 999;
+  }
+
+  &-item {
+    position: relative;
+    display: inline-block;
+    font-size: 4.5vw;
+    line-height: 22px;
+    letter-spacing: .3px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: $text;
+    cursor: pointer;
+
+    @media (min-width: 400px) and (max-width: 767px) {
+      font-size: 4.5vw;
+      line-height: 36px;
+      letter-spacing: .3px;
+    }
+
+    @media (min-width: 768px) and (max-width: 1439px) {
+      font-size: 4vw;
+      line-height: 4vw;
+      letter-spacing: 0.6px;
+    }
+
+    @media (min-width: 1440px) {
+      font-size: 48px;
+      line-height: 48px;
+      letter-spacing: 0.6px;
+    }
+
+    &:hover,
+    &.is-active {
+      &:after {
+        @media (max-width: 767px) {
+          position: relative;
+          display: inline-block;
+          content: ')';
+        }
+      }
+
+      &:before {
+        @media (max-width: 1023px) {
+          position: relative;
+          display: inline-block;
+          content: '(';
+        }
+      }
+
+      @media (min-width: 1024px) {
+        color: #fff;
+        opacity: 0.8;
+        text-shadow: 1px 1px 0 rgba(0,0,0,.8), -1px -1px 0 rgba(0,0,0,.8), 1px -1px 0 rgba(0,0,0,.8), -1px 1px 0 rgba(0,0,0,.8), 1px 1px 0 rgba(0,0,0,.8);
+      }
+    }
+
+    &:last-of-type {
+      padding-right: 0;
+    }
+  }
+}
+
+.is-active-slide-0 {
+  .react-swipeable-view-container {
+    transform: translateX(calc(0)) !important;
+  }
+}
+
+.is-active-slide-1 {
+  .react-swipeable-view-container {
+    transform: translateX(calc(-100% - 16px)) !important;
+  }
+}
+
+.is-active-slide-2 {
+  .react-swipeable-view-container {
+    transform: translateX(calc(-200% - 32px)) !important;
+  }
+}
+
+.is-active-slide-3 {
+  .react-swipeable-view-container {
+    transform: translateX(calc(-300% - 48px)) !important;
+  }
+}
+
+.react-swipeable-view-container > div {
+  width: calc(100% + 16px) !important;
+  padding-left: 8px;
+  padding-right: 8px;
+
+  &:first-of-type {
+    width: calc(100% + 8px) !important;
+    padding-right: 8px;
+    padding-left: 0;
+  }
+
+  &:last-of-type {
+    width: calc(100% + 8px) !important;
+    padding-left: 8px;
+    padding-right: 0;
+  }
+}
+
+.main-list-btn {
+  position: relative;
+  display: block;
+  grid-column: span 2;
+  font-size: 22px;
+  line-height: 22px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: $text;
+
+  @media (min-width: 400px) and (max-width: 767px) {
+    font-size: 22px;
+    line-height: 36px;
+    letter-spacing: .3px;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 48px;
+    line-height: 48px;
+    letter-spacing: 0.6px;
+  }
+
+  &:hover {
+    color: #fff;
+    text-shadow: 1px 1px 0 rgba(0,0,0,.8), -1px -1px 0 rgba(0,0,0,.8), 1px -1px 0 rgba(0,0,0,.8), -1px 1px 0 rgba(0,0,0,.8), 1px 1px 0 rgba(0,0,0,.8);
+    opacity: 0.8;
+  }
+
+  @media (min-width: 1024px) {
+    grid-column: span 11;
+  }
+
+  &-wrap {
+    position: relative;
+    margin-top: 30px;
+    border-top: 1px solid #ededed;
+  }
+
+  &-inner {
+    position: relative;
+    display: block;
+    text-align: center;
+    padding-top: 30px;
+  }
+}

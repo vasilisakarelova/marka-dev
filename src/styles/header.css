@@ -10,22 +10,12 @@
   }
 
   &.is-floating {
-    @media (min-width: 768px) {
+    @media (min-width: 1024px) {
       z-index: 4;
     }
 
     .header-container {
-      @media (min-width: 768px) and (max-width: 1439px) {
-        grid-template-columns: 100%;
-        width: 100px;
-        height: 100%;
-        padding-right: 0;
-        grid-template-rows: repeat(9,minmax(16px,1fr));
-        grid-row-gap: 29px;
-        grid-column-gap: 0;
-      }
-
-      @media (min-width: 1440px) {
+      @media (min-width: 1024px) {
         grid-template-columns: 100%;
         width: 100px;
         height: 100%;
@@ -48,6 +38,11 @@
   width: 100%;
   height: 60px;
   transition: background-color .4s linear, opacity .4s linear;
+
+  @media (max-width: 1023px) {
+    grid-template-columns: auto repeat(2,minmax(80px,1fr));
+    grid-column-gap: 6px;
+  }
 }
 
 .header-block-wrap {
@@ -59,39 +54,36 @@
     flex-direction: column;
     grid-column: 1 !important;
     opacity: 1 !important;
+    filter: blur(0px) !important;
   }
 
   &:nth-of-type(2) {
-    grid-column: 1;
+    grid-column: 2;
 
     &.is-floating {
-      grid-row: span 8;
+      /*grid-row: span 8;*/
       text-transform: uppercase;
 
       @media (min-width: 768px) and (max-width: 1439px) {
-        grid-row: span 5;
+        grid-row: span 4;
       }
 
       @media (min-width: 1440px) {
-        grid-row: span 5;
+        grid-row: span 4;
       }
     }
 
-    @media (min-width: 768px) and (max-width: 1439px) {
-      grid-column: span 5;
-    }
-
-    @media (min-width: 1440px) {
+    @media (min-width: 1024px) {
       grid-column: span 9;
     }
   }
 
   &:last-of-type {
-    grid-column: 2;
+    grid-column: 3;
     justify-content: flex-end;
 
     &.is-floating {
-      grid-row: span 3;
+      /*grid-row: span 3;*/
       justify-content: flex-start;
 
       .header-block-link-small {
@@ -99,7 +91,7 @@
       }
 
       .header-block:last-of-type {
-        padding-top: 10px;
+        padding-top: 20px;
       }
 
       @media (min-width: 1440px) {
@@ -107,16 +99,7 @@
       }
     }
 
-    @media (min-width: 768px) and (max-width: 1439px) {
-      grid-column-start: 7;
-      grid-column-end: 9;
-
-      .header-block {
-        padding-left: 15px;
-      }
-    }
-
-    @media (min-width: 1440px) {
+    @media (min-width: 1024px) {
       grid-column-start: 11;
       grid-column-end: 13;
 
@@ -124,6 +107,7 @@
         padding-left: 25px;
       }
     }
+
   }
 }
 
@@ -131,6 +115,12 @@
   position: relative;
   display: flex;
   align-items: center;
+
+  &.hide-on-mob {
+    @media (max-width: 1023px) {
+      display: none;
+    }
+  }
 
   &-link {
     position: relative;
@@ -140,6 +130,7 @@
     line-height: 32px;
     color: #000000;
     white-space: nowrap;
+    text-transform: capitalize;
 
     &:hover {
       opacity: 0.8;
@@ -148,11 +139,13 @@
     @media (min-width: 414px) and (max-width: 767px) {
       font-size: 18px;
       padding-right: 15px;
+      text-transform: capitalize;
     }
 
     @media (min-width: 768px) {
       padding-right: 40px;
       font-size: 24px;
+      text-transform: inherit;
     }
   }
 
@@ -165,12 +158,16 @@
     top: 0px;
     padding-right: 7px;
 
-    @media (min-width: 414px) and (max-width: 767px) {
+    &.is-btn {
+      cursor: pointer;
+    }
+
+    @media (min-width: 414px) and (max-width: 1023px) {
       top: 1px;
       padding-right: 20px;
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: 1024px) {
       font-size: 16px;
       top: 4px;
       padding-right: 0;
@@ -184,7 +181,8 @@
     transition: transform .3s linear;
 
     &-wrap {
-      display: none;
+      display: flex;
+      align-items: center;
       position: relative;
       font-family: Helvetica;
       font-size: 24px;
@@ -193,19 +191,18 @@
       line-height: 32px;
       transition: all .3s linear;
 
-      @media (min-width: 768px) {
-        display: flex;
-        align-items: center;
-      }
-
       &.is-hidden {
-        opacity: 0;
-        visibility: hidden;
+        @media (min-width: 1024px) {
+          opacity: 0;
+          visibility: hidden;
+        }
       }
 
       &.is-visible {
-        opacity: 1;
-        visibility: visible;
+        @media (min-width: 1024px) {
+          opacity: 1;
+          visibility: visible;
+        }
       }
 
       &.is-index {
@@ -220,10 +217,28 @@
 .header-block-logo {
   position: relative;
   display: block;
-  height: 220px;
   font-family: 'TStar Pro Bold';
-  font-size: 220px;
-  line-height: 220px;
+  font-size: 55px;
+  line-height: 55px;
+  height: 55px;
+
+  @media (min-width: 414px) and (max-width: 767px) {
+    font-size: 70px;
+    line-height: 70px;
+    height: 70px;
+  }
+
+  @media (min-width: 768px) and (max-width: 1439px) {
+    font-size: 15vw;
+    line-height: 15vw;
+    height: 15vw;
+  }
+
+  @media (min-width: 1440px) {
+    font-size: 220px;
+    line-height: 220px;
+    height: 220px;
+  }
 
   &-wrap {
     position: fixed;

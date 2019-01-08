@@ -1,6 +1,11 @@
 .footer-wrap {
-  position: relative;
+  position: fixed;
   display: block;
+  bottom: 0;
+
+  &.is-invisible {
+    visibility: hidden;
+  }
 }
 
 .footer-container {

@@ -23,7 +23,7 @@ export default class extends Component {
     this.setState({
       currentMember: src,
       randomLeft: getRandomArbitrary(0, (window.innerWidth - 300)),
-      randomTop: getRandomArbitrary(this.props.scroll, (window.innerHeight + this.props.scroll - 300))
+      randomTop: getRandomArbitrary((this.props.scroll - 280), (this.props.scroll + window.innerHeight - 300 - 280))
     })
   }
 
@@ -63,7 +63,7 @@ export default class extends Component {
                 </div>
                 <div className='about-credits-wrap grid-menor'>
                   <div className='about-credits-headline'>(C)redits</div>
-                  <div className='about-team-wrap grid-menor'>
+                  <div className='about-team-wrap'>
                     { this.props.data.team.map((member,idx) => {
                         return (
                           <div className='about-team-member' key={idx}>

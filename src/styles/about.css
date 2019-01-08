@@ -2,8 +2,8 @@
   &-intro-container {
     position: relative;
     display: block;
-    font-size: 24px;
-    line-height: 32px;
+    font-size: 18px;
+    line-height: 24px;
     letter-spacing: .3px;
     padding-top: 60px;
     grid-column: span 2;
@@ -12,14 +12,14 @@
       position: relative;
       display: block;
       margin-bottom: 16px;
+      font-size: inherit;
+      line-height: inherit;
     }
 
-    @media (min-width: 768px) and (max-width: 1439px) {
-      grid-column: span 5;
-    }
-
-    @media (min-width: 1440px) {
-      grid-column: span 5;
+    @media (min-width: 1024px) {
+      grid-column: 3 / span 6;
+      font-size: 24px;
+      line-height: 32px;
     }
   }
 
@@ -32,13 +32,7 @@
     width: calc(100% + 40px);
     transform: translateX(-20px);
 
-    @media (min-width: 768px) and (max-width: 1439px) {
-      grid-column: span 8;
-      width: calc(100% + 64px);
-      transform: translateX(-32px);
-    }
-
-    @media (min-width: 1440px) {
+    @media (min-width: 1024px) {
       grid-column: span 12;
       width: calc(100% + 64px);
       transform: translateX(-32px);
@@ -48,31 +42,41 @@
   &-deed-scroll {
     position: relative;
     display: flex;
-    overflow: scroll;
-    margin-bottom: -30px;
+    overflow: hidden;
+    margin-bottom: 15px;
+
+    @media (min-width: 414px) and (max-width: 1023px) {
+      margin-bottom: 5px;
+    }
+
+    @media (min-width: 1024px) {
+      margin-bottom: -30px;
+    }
   }
 
   &-deed-inner {
     position: relative;
     display: block;
-    font-size: 120px;
+    font-size: 17vw;
     font-family: 'TStar Pro Bold';
     white-space: nowrap;
     -webkit-text-stroke: black;
     -webkit-text-stroke-width: 1px;
     color: transparent;
     opacity: 0.8;
-    padding-bottom: 30px;
+    padding-bottom: 10px;
     left: 50%;
-    transform: translateX(-50%) scale(.8);
+    transform: translateX(-50%) scale(1);
     transition: all .4s ease-in-out;
 
     &:hover {
-      transform: translateX(-50%) scale(1);
+      transform: translateX(-50%) scale(.8);
     }
 
-    @media (min-width: 768px) {
-      font-size: 220px;
+    @media (min-width: 1024px) {
+      font-size: 15vw;
+      line-height: 16.5vw;
+      padding-bottom: 30px;
     }
   }
 
@@ -83,11 +87,11 @@
     width: 100%;
     text-transform: uppercase;
     overflow: hidden;
-    margin-bottom: -40px;
+    margin-bottom: -9.3vw;
     cursor: pointer;
 
-    @media (min-width: 768px) {
-      margin-bottom: -65px;
+    @media (min-width: 414px) {
+      margin-bottom: -5.3vw;
     }
   }
 
@@ -100,22 +104,27 @@
   &-credits-headline {
     position: relative;
     display: block;
-    font-size: 24px;
-    line-height: 32px;
+    font-size: 18px;
+    line-height: 24px;
     letter-spacing: .3px;
+
+    @media (min-width: 768px) {
+      font-size: 24px;
+      line-height: 32px;
+    }
   }
 
   &-team-wrap {
     position: relative;
+    display: grid;
     grid-column: span 2;
     grid-row-gap: 0;
 
-    @media (min-width: 768px) and (max-width: 1439px) {
-      grid-column: span 7;
-    }
-
-    @media (min-width: 1440px) {
+    @media (min-width: 1024px) {
       grid-column: span 11;
+      grid-template-columns: minmax(260px, 1fr) minmax(260px, 1fr) minmax(195px, 1fr);
+      grid-auto-flow: column;
+      grid-template-rows: repeat(7,32px);
     }
   }
 
@@ -123,22 +132,8 @@
     position: relative;
     display: block;
     width: 100%;
-    grid-column: span 2;
     white-space: nowrap;
 
-    @media (min-width: 768px) and (max-width: 1439px) {
-      grid-column: span 2;
-      &:nth-of-type(3n) {
-        grid-column: span 3;
-      }
-    }
-
-    @media (min-width: 1440px) {
-      grid-column: span 4;
-      &:nth-of-type(3n) {
-        grid-column: span 3;
-      }
-    }
   }
 
   &-team-member-photo {
@@ -171,8 +166,13 @@
     position: relative;
     display: inline-block;
     z-index: 2;
-    font-size: 24px;
-    line-height: 32px;
+    font-size: 18px;
+    line-height: 24px;
     letter-spacing: .3px;
+
+    @media (min-width: 768px) {
+      font-size: 24px;
+      line-height: 32px;
+    }
   }
 }

@@ -1,0 +1,225 @@
+.project-modal-wrap {
+  position: absolute;
+  top: 0;
+  z-index: 4;
+  height: 100%;
+  min-width: 100%;
+  background-color: rgba(255, 255, 255, 0.75);
+
+  .border-space-saver {
+    transform: translateY(44px);
+    transition: transform .4s linear;
+  }
+}
+
+.project-wrap {
+  padding-top: 40px !important;
+  padding-bottom: 40px !important;
+}
+
+.project-container {
+  display: grid;
+  grid-column: span 2 !important;
+  grid-row: 2 !important;
+  transform: translateY(-72px) !important;
+  padding: 0 !important;
+
+  @media (min-width: 1024px) {
+    grid-column: 1 / span 12 !important;
+  }
+}
+
+.project-inner {
+  &-close-btn {
+    position: sticky;
+    top: -32px;
+    display: flex;
+    height: 40px;
+    justify-content: flex-start;
+    align-items: flex-end;
+    cursor: pointer;
+    z-index: 2;
+  }
+
+  &-title {
+    position: relative;
+    display: block;
+    color: #000;
+    font-size: 48px;
+    line-height: 48px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    grid-column: span 2;
+
+    @media (min-width: 1024px) {
+      grid-column: 2 / span 11;
+    }
+  }
+
+  &-short-desc {
+    position: relative;
+    display: block;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0.3px;
+    grid-column: span 2;
+    text-transform: none;
+    letter-spacing: 0px;
+    margin-top: 10px;
+
+    @media (min-width: 1024px) {
+      font-size: 22px;
+      line-height: 32px;
+      grid-column: span 11;
+    }
+  }
+
+  &-constructor-desc {
+    position: relative;
+    display: block;
+    grid-column: span 2;
+
+    @media (min-width: 1024px) {
+      grid-column: 9/span 4;
+      grid-row: 2;
+    }
+
+    &-tags {
+      text-transform: capitalize;
+    }
+
+    div {
+      position: relative;
+      display: block;
+      font-size: 16px;
+      line-height: 22px;
+
+      @media (min-width: 1024px) {
+        line-height: 20px;
+      }
+    }
+  }
+
+  &-constructor-text {
+    position: relative;
+    display: block;
+    grid-column: span 2;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0.3px;
+
+    @media (min-width: 1024px) {
+      font-size: 24px;
+      line-height: 32px;
+      grid-column: 2 / span 7;
+    }
+  }
+
+  &-constructor-slider-wrap {
+    position: relative;
+    overflow: hidden;
+    grid-column: span 2;
+    width: calc(100% + 40px);
+    left: -20px;
+
+    @media (min-width: 1024px) {
+      grid-column: span 12;
+      width: calc(100% + 64px);
+      left: -32px;
+    }
+  }
+
+  &-constructor-slider-count {
+    position: relative;
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.8px;
+    grid-column: span 2;
+
+    @media (min-width: 1024px) {
+      grid-column: 2 / span 11;
+    }
+  }
+
+  &-constructor-slider-scroll {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: -50px;
+    width: calc(100% + 64px);
+    left: -32px;
+    padding: 0 32px;
+    grid-column: span 2;
+
+    @media (min-width: 1024px) {
+      grid-column: span 12;
+    }
+  }
+
+  &-constructor-slider {
+    position: relative;
+    display: flex;
+    grid-column: span 2;
+    padding-bottom: 50px;
+    transition: transform .4s ease-in-out;
+
+    @media (min-width: 1024px) {
+      grid-column: 2 / span 11;
+    }
+  }
+
+  &-constructor-slider-left-btn {
+    position: absolute;
+    height: 100%;
+    width: 50%;
+    display: inline-block;
+    left: 0;
+    top: 0;
+    cursor: url('./assets/left-btn.svg'), auto;
+    transition: all .3s linear;
+
+    &.is-disabled {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  &-constructor-slider-right-btn {
+    position: absolute;
+    height: 100%;
+    width: 50%;
+    display: inline-block;
+    right: 0;
+    top: 0;
+    cursor: url('./assets/right-btn.svg'), auto;
+    transition: all .3s linear;
+
+    &.is-disabled {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  &-constructor-slider-item {
+    position: relative;
+    display: inline-block;
+    margin-right: 20px;
+
+    img {
+      position: relative;
+      display: block;
+      height: 30vw;
+      width: auto;
+    }
+  }
+
+  &-constructor-slider-desc {
+    position: relative;
+    display: block;
+    margin-top: 5px;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.8px;
+  }
+}

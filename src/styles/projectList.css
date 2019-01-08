@@ -6,7 +6,7 @@
   overflow-y: hidden;
   overflow-x: visible;
 
-  @media (min-width: 1440px) {
+  @media (min-width: 1024px) {
     padding-top: 60px;
     padding-bottom: 60px;
   }
@@ -14,15 +14,31 @@
   &-container {
     position: relative;
     display: flex;
-    overflow: scroll;
+    overflow: hidden;
     grid-column: span 2;
+    height: 36px;
 
-    @media (min-width: 768px) and (max-width: 1439px) {
-      grid-column: 2 / span 7;
+    @media (min-width: 1024px) {
+      grid-column: 2 / span 11;
+      height: 48px;
     }
 
-    @media (min-width: 1440px) {
-      grid-column: 2 / span 11;
+    &.is-fixed {
+      .project-list-tags-inner {
+        position: fixed;
+        transform: translateY(-125px);
+
+        @media (min-width: 414px) {
+          transform: translateY(-44px);
+        }
+      }
+    }
+
+    &:not(.is-fixed) {
+      .project-list-tags-inner {
+        top: auto !important;
+        width: 100% !important;
+      }
     }
   }
 
@@ -34,34 +50,61 @@
     align-content: space-between;
     justify-content: space-between;
     align-items: center;
+    z-index: 2;
   }
 
   &-item {
     position: relative;
     display: inline-block;
-    font-size: 16px;
+    font-size: 4.5vw;
     line-height: 22px;
     letter-spacing: .3px;
-    text-transform: capitalize;
+    text-transform: uppercase;
     white-space: nowrap;
     color: $text;
+    cursor: pointer;
 
     @media (min-width: 400px) and (max-width: 767px) {
-      font-size: 22px;
+      font-size: 4.5vw;
       line-height: 36px;
       letter-spacing: .3px;
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: 768px) and (max-width: 1439px) {
+      font-size: 4vw;
+      line-height: 4vw;
+      letter-spacing: 0.6px;
+    }
+
+    @media (min-width: 1440px) {
       font-size: 48px;
       line-height: 48px;
       letter-spacing: 0.6px;
     }
 
-    &:hover {
-      color: #fff;
-      text-shadow: 1px 1px 0 rgba(0,0,0,.8), -1px -1px 0 rgba(0,0,0,.8), 1px -1px 0 rgba(0,0,0,.8), -1px 1px 0 rgba(0,0,0,.8), 1px 1px 0 rgba(0,0,0,.8);
-      opacity: 0.8;
+    &:hover,
+    &.is-active {
+      &:after {
+        @media (max-width: 767px) {
+          position: relative;
+          display: inline-block;
+          content: ')';
+        }
+      }
+
+      &:before {
+        @media (max-width: 767px) {
+          position: relative;
+          display: inline-block;
+          content: '(';
+        }
+      }
+
+      @media (min-width: 768px) {
+        color: #fff;
+        opacity: 0.8;
+        text-shadow: 1px 1px 0 rgba(0,0,0,.8), -1px -1px 0 rgba(0,0,0,.8), 1px -1px 0 rgba(0,0,0,.8), -1px 1px 0 rgba(0,0,0,.8), 1px 1px 0 rgba(0,0,0,.8);
+      }
     }
 
     &:last-of-type {
@@ -119,7 +162,7 @@
   font-size: 22px;
   line-height: 22px;
   letter-spacing: 0.3px;
-  text-transform: capitalize;
+  text-transform: uppercase;
   white-space: nowrap;
   color: $text;
 
