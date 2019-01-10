@@ -1,6 +1,6 @@
 .contact-wrap {
   position: relative;
-  min-height: calc(100vh - 80px - 60px); /*footer, header*/
+  min-height: calc(calc(100vh - 60px - 55px)); /*footer, header*/
 }
 
 .contact-container {

@@ -11,31 +11,23 @@ export default class extends Component {
     this.state = {
       data: props.data,
       activeTag: 'all',
-      tagsFixed: false,
+      toggleFiedTags: false,
     }
 
     this.filter = this.filter.bind(this)
   }
 
   componentDidMount () {
-    this.setState({
-      tagsWidth: this.refs.tagsContainer.offsetWidth
-    })
-
-    document.addEventListener('resized', () => {
-      if (this.refs.tagsContainer !== undefined) {
-        this.setState({
-          tagsWidth: this.refs.tagsContainer.offsetWidth
-        })
-      }
+    document.addEventListener('scrolled', (ev) => {
+      const scrolled = ev.data.top
+      this.props.toggleTags(this.refs.projectTags.getBoundingClientRect().top <= 0)
+      this.setState({
+        toggleFiedTags: this.refs.projectTags.getBoundingClientRect().top <= 0
+      })
     })
   }
 
-  componentWillReceiveProps(newProps) {
-    this.setState({
-      tagsFixed: this.refs.tagsContainer.getBoundingClientRect().top <= 0
-    })
-  }
+  componentWillReceiveProps(newProps) {}
 
   filter (tag) {
     this.props.filter(tag)
@@ -50,8 +42,8 @@ export default class extends Component {
           <div className='border-wrap'>
             <div className='main-list-wrap'>
               <div className='main-list-tags grid'>
-                <div className={css('main-list-tags-container', {'is-fixed': this.state.tagsFixed })} ref='tagsContainer'>
-                  <div className='main-list-tags-inner' style={{top: `${this.props.scroll}px`, width: `${this.state.tagsWidth}px`}}>
+                <div className={css('main-list-tags-container', {'is-hidden': this.state.toggleFiedTags})} ref='projectTags'>
+                  <div className='main-list-tags-inner'>
                     { this.props.data[lang].tags.map((tag,idx) => {
                         return (
                           <div className={css('main-list-tags-item', {'is-active': this.state.activeTag === tag})} key={idx} onClick={ev => this.filter(tag)}>{tag}</div>
@@ -64,7 +56,8 @@ export default class extends Component {
               <div className='main-list-container grid'>
                 <div className='main-list-container-inner grid-menor'>
                   { this.state.data[lang].projects.filter(project => this.props.data[lang].highlights.includes(project.url)).map((project,idx) => {
-                      return <ProjectView data={project} key={idx} isBlur={true} scroll={this.props.scroll}/>
+                      let isLast = (idx + 1 === this.props.data[lang].highlights.length)
+                      return <ProjectView data={project} key={idx} isBlur={true} isLast={isLast} scroll={this.props.scroll} fixScrollBtn={this.props.fixScrollBtn}/>
                     })
                   }
                 </div>

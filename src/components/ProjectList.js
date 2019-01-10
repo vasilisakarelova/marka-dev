@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import * as css from 'classnames'
-import Waypoint from 'react-waypoint'
 
 import ProjectView from './ProjectView'
 
@@ -10,28 +9,21 @@ export default class extends Component {
 
     this.state = {
       data: props.data,
-      tagsFixed: false,
+      toggleFiedTags: false,
     }
   }
 
   componentDidMount () {
-    this.setState({
-      tagsWidth: this.refs.tagsContainer.offsetWidth
-    })
-
-    document.addEventListener('resized', () => {
-      if (this.refs.tagsContainer !== undefined) {
-        this.setState({
-          tagsWidth: this.refs.tagsContainer.offsetWidth
-        })
-      }
+    document.addEventListener('scrolled', (ev) => {
+      const scrolled = ev.data.top
+      this.props.toggleTags(this.refs.projectTags.getBoundingClientRect().top <= 0)
+      this.setState({
+        toggleFiedTags: this.refs.projectTags.getBoundingClientRect().top <= 0
+      })
     })
   }
 
   componentWillReceiveProps(newProps) {
-    this.setState({
-      tagsFixed: this.refs.tagsContainer.getBoundingClientRect().top <= 0
-    })
     if (newProps.filterTag !== undefined) this.filter(newProps.filterTag)
   }
 
@@ -45,8 +37,8 @@ export default class extends Component {
           <div className='border-wrap'>
             <div className='project-list-wrap'>
               <div className='project-list-tags grid'>
-                <div className={css('project-list-tags-container', {'is-fixed': this.state.tagsFixed })} ref='tagsContainer'>
-                  <div className='project-list-tags-inner' style={{top: `${this.props.scroll}px`, width: `${this.state.tagsWidth}px`}}>
+                <div className={css('project-list-tags-container', {'is-hidden': this.state.toggleFiedTags})} ref='projectTags'>
+                  <div className='project-list-tags-inner'>
                     <div className={css('project-list-tags-item', {'is-active': this.props.activeTag === 'all'})} onClick={ev => this.props.filter('all')}>All</div>
                     { this.props.data[lang].tags.map((tag,idx) => {
                         return (
@@ -60,7 +52,8 @@ export default class extends Component {
               <div className='project-list-container grid'>
                 <div className='project-list-container-inner grid-menor'>
                   { projects.map((project,idx) => {
-                      return <ProjectView data={project} key={idx} isBlur={false} />
+                      let isLast = (idx + 1 === projects.length)
+                      return <ProjectView data={project} dataKey={idx} key={idx} isLast={isLast} isBlur={false} fixScrollBtn={this.props.fixScrollBtn}/>
                     })
                   }
                 </div>

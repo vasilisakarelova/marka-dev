@@ -33,38 +33,61 @@
   &-close-btn {
     position: sticky;
     top: -32px;
-    display: flex;
+    display: none;
     height: 40px;
     justify-content: flex-start;
     align-items: flex-end;
     cursor: pointer;
     z-index: 2;
+    font-family: 'TStar Pro Medium';
+
+    @media (min-width: 1024px) {
+      display: flex;
+    }
+
+    &--mobile {
+      display: inline-flex;
+      font-size: 16px;
+      line-height: 20px;
+      letter-spacing: 0.8px;
+      padding-right: 15px;
+      height: 20px;
+      vertical-align: baseline;
+
+      @media (min-width: 1024px) {
+        display: none;
+      }
+    }
   }
 
   &-title {
     position: relative;
     display: block;
     color: #000;
-    font-size: 48px;
-    line-height: 48px;
-    letter-spacing: 0.6px;
+    font-family: 'TStar Pro Bold';
+    font-size: 23px;
+    line-height: 32px;
+    letter-spacing: 0.3px;
     text-transform: uppercase;
     grid-column: span 2;
 
     @media (min-width: 1024px) {
       grid-column: 2 / span 11;
+      font-size: 48px;
+      line-height: 48px;
+      letter-spacing: 0.6px;
     }
   }
 
   &-short-desc {
+    font-family: 'TStar Pro Medium';
     position: relative;
     display: block;
     font-size: 16px;
     line-height: 22px;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.8px;
     grid-column: span 2;
     text-transform: none;
-    letter-spacing: 0px;
     margin-top: 10px;
 
     @media (min-width: 1024px) {
@@ -91,10 +114,12 @@
     div {
       position: relative;
       display: block;
-      font-size: 16px;
-      line-height: 22px;
+      font-size: 12px;
+      line-height: 16px;
+      letter-spacing: 0.6px;
 
       @media (min-width: 1024px) {
+        font-size: 16px;
         line-height: 20px;
       }
     }
@@ -105,7 +130,7 @@
     display: block;
     grid-column: span 2;
     font-size: 16px;
-    line-height: 22px;
+    line-height: 20px;
     letter-spacing: 0.3px;
 
     @media (min-width: 1024px) {

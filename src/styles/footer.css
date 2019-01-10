@@ -2,6 +2,7 @@
   position: fixed;
   display: block;
   bottom: 0;
+  width: 100%;
 
   &.is-invisible {
     visibility: hidden;
@@ -29,11 +30,18 @@
 
 .footer-block {
   position: relative;
-  display: block;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   white-space: nowrap;
   grid-column: span 2;
   font-size: 16px;
   line-height: 80px;
+  letter-spacing: 0.8px;
+
+  @media (min-width: 768px) {
+    display: block;
+  }
 
   @media (min-width: 768px) and (max-width: 1439px) {
     grid-column: span 6;
@@ -41,5 +49,23 @@
 
   @media (min-width: 1440px) {
     grid-column: span 12;
+  }
+
+  &--mobile {
+    position: relative;
+    display: inline-block;
+
+    &:nth-of-type(1) {
+      padding-right: 15px;
+    }
+  }
+}
+
+.footer-side {
+
+  &--mobile {
+    @media (min-width: 1024px) {
+      display: none;
+    }
   }
 }

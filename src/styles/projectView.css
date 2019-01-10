@@ -18,22 +18,43 @@
   }
 
   &.is-portrait .project-view-cover-wrap {
-    padding-top: 100vw;
+    padding-top: 60vw;
+
+    img {
+      height: 100%;
+      width: auto;
+    }
 
     @media (min-width: 1024px) {
       padding-top: 30vw;
+
+      img {
+        height: auto;
+        width: 100%;
+      }
     }
   }
 
-  &.is-landscape .project-view-cover-wrap {
-    padding-top: 60vw;
+  &.is-landscape {
+    &.on-project .project-view-cover-wrap {
+      padding-top: 27.5vw;
 
-    @media (min-width: 1024px) {
-      padding-top: 30vw;
+      @media (min-width: 1024px) {
+        padding-top: 15.371vw;
+      }
+    }
+
+    &.on-index .project-view-cover-wrap {
+      padding-top: 60vw;
+
+      @media (min-width: 1024px) {
+        padding-top: 30vw;
+      }
     }
   }
 
   &.on-project {
+    grid-column: span 1;
     @media (min-width: 1024px) {
       grid-column: span 4;
       display: grid;
@@ -307,15 +328,23 @@
   font-size: 16px;
   line-height: 16px;
   margin-top: 14px;
+
+  @media (min-width: 1024px) {
+    height: auto !important;
+  }
 }
 
 .project-view-tag {
   position: relative;
-  display: block;
+  display: none;
   text-transform: capitalize;
   font-size: 16px;
   line-height: 20px;
   margin-top: 2px;
+
+  @media (min-width: 1024px) {
+    display: block;
+  }
 }
 
 .project-view-cover {
@@ -341,6 +370,9 @@
 
 .project-view-link {
   position: relative;
-  display: block;
+  display: flex;
+  align-items: flex-end;
+  padding-top: 32px;
   width: 100%;
+  height: 100%;
 }

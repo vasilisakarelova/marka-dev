@@ -35,7 +35,6 @@ export default class extends Component {
     $(this.refs.sliderWrap).animate({
       scrollLeft: scroll
     }, 800, 'swing');
-    //this.refs.sliderWrap.scrollLeft = scroll
 
     if (scroll > (this.refs.sliderWrap.scrollWidth - this.refs.sliderWrap.clientWidth) ) return
 
@@ -60,6 +59,9 @@ export default class extends Component {
                 </div>
                 <div className='project-container grid'>
                   <div className='project-inner-title'>
+                    <span className='project-inner-close-btn project-inner-close-btn--mobile'>
+                      <div onClick={ev => this.props.closeModal()}>(X)</div>
+                    </span>
                     {data.title}
                     <div className='project-inner-short-desc'>{data.shortDesc}</div>
                   </div>

@@ -35,10 +35,16 @@ export default class extends Component {
   }
 
   animationEnded () {
-    this.props.setAnimationEnded(true)
+    //this.props.setAnimationEnded(true)
+    this.setState({
+      animationEnded: true
+    })
 
     setTimeout(() => {
-      this.props.setAnimationArrived(true)
+      //this.props.setAnimationArrived(true)
+      this.setState({
+        animationArrived: true
+      })
     }, 400)
   }
 
@@ -48,9 +54,9 @@ export default class extends Component {
 
   render () {
     return (
-      <div className={css('header-wrap', {'is-floating': this.props.floatingMenu})}>
+      <div className={css('header-wrap', {'is-floating': this.props.floatingMenu, 'is-arrived': this.state.animationEnded, 'is-index': this.props.page === 0, 'is-ready': this.state.animationArrived})}>
         <div className='header-container grid'>
-          <div className={css('header-block-arrow-wrap', {'is-hidden': !this.props.hasScrolled, 'is-visible': this.props.page === 3, 'is-index': this.props.page === 0})}>
+          <div className={css('header-block-arrow-wrap', {'is-hidden': !this.props.hasScrolled, 'is-visible': (this.props.page === 1) || (this.props.page === 2) || (this.props.page === 3), 'is-index': this.props.page === 0})}>
             <Link className="header-block-link" to='/'><span className='header-block-arrow'>/\</span></Link>
           </div>
           <div className={css('header-block-wrap', {'is-floating': this.props.floatingMenu})} style={{opacity: this.props.headerOpacity, filter: `blur(${this.props.headerBlur}px)`}}>
@@ -69,7 +75,7 @@ export default class extends Component {
             </div>
           </div>
         </div>
-        <div className={css('header-block-logo-wrap', {'is-animation-ended': this.props.animationEnded, 'is-arrived': this.props.animationArrived})}
+        <div className={css('header-block-logo-wrap', {'is-animation-ended': this.state.animationEnded, 'is-arrived': this.state.animationArrived})}
             style={{opacity: this.props.headerOpacity, filter: `blur(${this.props.headerBlur}px)`, visibility: (this.props.headerOpacity === 0) ? 'hidden' : 'visible'}}>
           <div className='header-block-logo'>
             <span ref='typingLogo'></span>
