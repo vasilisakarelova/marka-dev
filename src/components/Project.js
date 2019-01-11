@@ -14,6 +14,13 @@ export default class extends Component {
     this.scrollSlider = this.scrollSlider.bind(this)
     this.showScroll = this.showScroll.bind(this)
     this.hideScroll = this.hideScroll.bind(this)
+    this.closeModal = this.closeModal.bind(this)
+  }
+
+  closeModal (ev) {
+    if (ev.target.contains(this.refs.projectModal)) {
+      this.props.closeModal()
+    }
   }
 
   showScroll(dir) {
@@ -49,7 +56,7 @@ export default class extends Component {
     const data = this.props.modalData[this.props.lang]
 
     return (
-      <div className={css('project-modal-wrap', {'is-open': this.props.openModal})}>
+      <div className={css('project-modal-wrap', {'is-open': this.props.openModal})} onClick={this.closeModal} ref='projectModal'>
         <div className='border-space-saver'>
           <div className='border-space-saver-inner'>
             <div className='border-wrap'>

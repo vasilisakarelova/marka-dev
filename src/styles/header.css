@@ -56,6 +56,10 @@
   @media (min-width: 1920px) {
     height: 80px;
   }
+
+  .is-blurred {
+    filter: blur(3px) !important;
+  }
 }
 
 .header-container {

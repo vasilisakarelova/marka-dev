@@ -19,11 +19,12 @@ export default class extends Component {
 
   componentDidMount () {
     document.addEventListener('scrolled', (ev) => {
-      const scrolled = ev.data.top
-      this.props.toggleTags(this.refs.projectTags.getBoundingClientRect().top <= 0)
-      this.setState({
-        toggleFiedTags: this.refs.projectTags.getBoundingClientRect().top <= 0
-      })
+      if (this.refs.projectTags !== undefined) {
+        this.props.toggleTags(this.refs.projectTags.getBoundingClientRect().top <= 0)
+        this.setState({
+          toggleFiedTags: this.refs.projectTags.getBoundingClientRect().top <= 0
+        })
+      }
     })
   }
 

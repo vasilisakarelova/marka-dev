@@ -222,13 +222,13 @@ button {
     position: relative;
     height: 0;
     text-align: right;
-    bottom: calc(80px + 24px + 16px + 63px + 30px);
+    bottom: calc(80px + 24px + 16px + 63px + 30px + 17px);
   }
 
   &.is-arrived-1 {
     position: relative;
     height: 0;
     text-align: right;
-    bottom: calc(80px + 24px + 16px + 16px);
+    bottom: calc(80px + 24px + 16px + 16px + 17px);
   }
 }

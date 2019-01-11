@@ -3,6 +3,8 @@ import page from 'page'
 import SwipeableViews from 'react-swipeable-views'
 import * as css from 'classnames'
 
+import getBrowser from './helpers/getBrowser.js'
+
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Main from './components/Main'
@@ -32,7 +34,8 @@ export default class App extends Component {
       lang: 'en',
       filtered: [],
       activeTag: 'all',
-      toggleTags: false
+      toggleTags: false,
+      headerBlurred: false
     }
 
     this.initRouting = this.initRouting.bind(this)
@@ -96,7 +99,10 @@ export default class App extends Component {
   }
 
   scrollTo (to, duration) {
-    const element = document.documentElement
+    let element = document.documentElement
+    if (getBrowser().name === 'Safari') {
+      element = document.body
+    }
     const start = element.scrollTop
     const change = to - start
     const startDate = +new Date()
@@ -137,7 +143,8 @@ export default class App extends Component {
         route: ctx.path,
         index: 0,
         isInvert: false,
-        openModal: false
+        openModal: false,
+        headerBlurred: false
       })
 
       this.scrollTo(0, 400)
@@ -148,7 +155,8 @@ export default class App extends Component {
         route: ctx.path,
         index: 1,
         isInvert: false,
-        openModal: false
+        openModal: false,
+        headerBlurred: false
       })
 
       this.scrollTo(0, 400)
@@ -159,7 +167,8 @@ export default class App extends Component {
         route: ctx.path,
         index: 2,
         isInvert: false,
-        openModal: false
+        openModal: false,
+        headerBlurred: false
       })
     })
 
@@ -168,7 +177,8 @@ export default class App extends Component {
         route: ctx.path,
         index: 3,
         isInvert: true,
-        openModal: false
+        openModal: false,
+        headerBlurred: false
       })
     })
 
@@ -180,7 +190,8 @@ export default class App extends Component {
           openModal: true,
           modalData: { 'en': project, 'ru': projectRu},
           route: ctx.path,
-          isInvert: false
+          isInvert: false,
+          headerBlurred: true
         })
 
         this.scrollTo(0, 400)
@@ -202,7 +213,6 @@ export default class App extends Component {
         activeTag: tag
     }))
 
-    console.log(this.projectListRef)
     setTimeout(() => {
       this.handleResize(this.projectListRef)
     }, 100)
@@ -262,7 +272,7 @@ export default class App extends Component {
             animationArrived={this.state.animationArrived}
             lang={this.state.lang} setLanguage={this.setLanguage}
             facebook={facebook} instagram={instagram}
-            headerOpacity={this.state.headerOpacity} headerBlur={this.state.headerBlur} floatingMenu={this.state.floatingMenu} />
+            headerOpacity={this.state.headerOpacity} headerBlurred={this.state.headerBlurred} headerBlur={this.state.headerBlur} floatingMenu={this.state.floatingMenu} />
           <div className={css('main-modal')}>
             <SwipeableViews
               ref='SwipeableViews'
@@ -283,7 +293,15 @@ export default class App extends Component {
           </div>
           { this.state.openModal && <Project openModal={this.state.openModal} lang={lang} closeModal={this.closeModal} modalData={this.state.modalData} />}
           { this.state.isMobile &&
-            <div className={css('scroll-top-btn', {'is-visible': this.state.floatingMenu, 'is-arrived-0': this.state.fixScrollBtn0, 'is-arrived-1': this.state.fixScrollBtn1})} onClick={ev => this.scrollTo(0, 500)}>/\</div>
+            <div className={css('scroll-top-btn', {'is-visible': this.state.floatingMenu, 'is-arrived-0': this.state.fixScrollBtn0, 'is-arrived-1': this.state.fixScrollBtn1})} onClick={ev => this.scrollTo(0, 500)}>
+              <svg width="21px" height="21px" viewBox="0 0 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+                  <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+                      <g transform="translate(-33.000000, -246.000000)" fill="#000000">
+                          <path d="M41.96,246.784 L35.624,266.248 L33.8,266.248 L40.184,246.784 L41.96,246.784 Z M53.996,266.296 L52.244,266.296 L45.86,246.856 L47.66,246.856 L53.996,266.296 Z"></path>
+                      </g>
+                  </g>
+              </svg>
+            </div>
           }
           <Footer isInvisible={!this.state.animationArrived} footerOpacity={this.state.footerOpacity} footerBlur={this.state.footerBlur} />
         </div>
