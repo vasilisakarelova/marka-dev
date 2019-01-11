@@ -4,8 +4,10 @@ import SwipeableViews from 'react-swipeable-views'
 import * as css from 'classnames'
 
 import getBrowser from './helpers/getBrowser.js'
+import Link from './helpers/Link'
 
 import Header from './components/Header'
+import HeaderFloating from './components/HeaderFloating'
 import Footer from './components/Footer'
 import Main from './components/Main'
 import ProjectList from './components/ProjectList'
@@ -13,6 +15,7 @@ import Project from './components/Project'
 import About from './components/About'
 import Contact from './components/Contact'
 import CommonTags from './components/CommonTags'
+import BackArrow from './components/BackArrow'
 
 export default class App extends Component {
   constructor(props) {
@@ -60,6 +63,32 @@ export default class App extends Component {
 
     document.addEventListener('scrolled', (ev) => {
       const scrolled = ev.data.top
+
+      let containerBounds = {
+        top: this.refs.SwipeableViews.rootNode.getBoundingClientRect().top,
+        height: this.refs.SwipeableViews.rootNode.getBoundingClientRect().height
+      }
+
+      let boundInView = (window.innerHeight - containerBounds.height + 16) >= containerBounds.top //16 is extra passing for ruonded bounds
+
+      if (this.state.index === 0) {
+        boundInView = (window.innerHeight - containerBounds.height + 16 + 78 + 16) >= containerBounds.top //16 is extra passing for ruonded bounds, 63 height of view all btn
+      }
+
+      if (boundInView) {
+        const scrolledAfterMenu = (scrolled - this.headerRef.offsetHeight)
+        const bound = containerBounds.height - window.innerHeight - 16
+        let extra = scrolledAfterMenu - bound
+
+        if (this.state.index === 0) {
+          extra = scrolledAfterMenu - bound + 98
+        }
+
+        this.floatingMenuRef.style.height = `calc(100% - 60px - 40px - 20px - ${extra}px)`
+      } else {
+        this.floatingMenuRef.style.height = ''
+      }
+
       let opacity = 0
       let blur = 0
       let footerOpacity = 1
@@ -267,13 +296,17 @@ export default class App extends Component {
         { this.state.toggleTags && <CommonTags index={this.state.index} activeTag={this.state.activeTag} filter={this.filter} tags={this.props.data[lang].tags} /> }
         <div className={css('scroll-wrap', {'is-invert': this.state.isInvert})} ref='main'>
         <div className={css('scroll-inner', {'is-index': index === 0})}>
-          <Header page={this.state.index} hasScrolled={this.state.hasScrolled}
+          <BackArrow index={this.state.index} hasScrolled={this.state.hasScrolled} />
+          <Header headerRef={el => this.headerRef = el} page={this.state.index} hasScrolled={this.state.hasScrolled}
             animationEnded={this.state.animationEnded}
             animationArrived={this.state.animationArrived}
             lang={this.state.lang} setLanguage={this.setLanguage}
             facebook={facebook} instagram={instagram}
-            headerOpacity={this.state.headerOpacity} headerBlurred={this.state.headerBlurred} headerBlur={this.state.headerBlur} floatingMenu={this.state.floatingMenu} />
+            headerOpacity={this.state.headerOpacity} headerBlurred={this.state.headerBlurred} headerBlur={this.state.headerBlur} />
           <div className={css('main-modal')}>
+            <HeaderFloating floatingMenuRef={el => this.floatingMenuRef = el}
+              floatingMenu={this.state.floatingMenu} page={this.state.index}
+              facebook={facebook} instagram={instagram} lang={this.state.lang} setLanguage={this.setLanguage} />
             <SwipeableViews
               ref='SwipeableViews'
               animateHeight

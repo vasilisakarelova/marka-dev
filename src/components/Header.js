@@ -59,27 +59,14 @@ export default class extends Component {
 
   render () {
     return (
-      <div className={css('header-wrap', {'is-floating': this.props.floatingMenu, 'is-arrived': this.state.animationEnded, 'is-index': this.props.page === 0, 'is-ready': this.state.animationArrived})}>
+      <div className={css('header-wrap', {'is-arrived': this.state.animationEnded, 'is-index': this.props.page === 0, 'is-ready': this.state.animationArrived})} ref={this.props.headerRef}>
         <div className='header-container grid'>
-          <div className={css('header-block-arrow-wrap', {'is-hidden': !this.props.hasScrolled, 'is-visible': (this.props.page === 1) || (this.props.page === 2) || (this.props.page === 3), 'is-index': this.props.page === 0})}>
-            <Link className="header-block-link" to='/'>
-              <span className='header-block-arrow'>
-                <svg width="21px" height="21px" viewBox="0 0 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-                    <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-                        <g transform="translate(-33.000000, -246.000000)" fill="#000000">
-                            <path d="M41.96,246.784 L35.624,266.248 L33.8,266.248 L40.184,246.784 L41.96,246.784 Z M53.996,266.296 L52.244,266.296 L45.86,246.856 L47.66,246.856 L53.996,266.296 Z"></path>
-                        </g>
-                    </g>
-                </svg>
-              </span>
-            </Link>
-          </div>
-          <div className={css('header-block-wrap', {'is-floating': this.props.floatingMenu, 'is-blurred': this.props.headerBlurred})} style={{opacity: this.props.headerOpacity, filter: `blur(${this.props.headerBlur}px)`}}>
+          <div className={css('header-block-wrap', {'is-blurred': this.props.headerBlurred})} style={{opacity: this.props.headerOpacity, filter: `blur(${this.props.headerBlur}px)`}}>
             <div className='header-block'><Link className="header-block-link" to='/projects'>{ (this.props.page === 1) && '(' }{ (this.props.floatingMenu) ? 'prj' : 'Projects' }{ (this.props.page === 1) && ')' }</Link></div>
             <div className='header-block'><Link className="header-block-link" to='/about-us'>{ (this.props.page === 2) && '(' }{ (this.props.floatingMenu) ? 'abt' : 'About us' }{ (this.props.page === 2) && ')' }</Link></div>
             <div className='header-block'><Link className="header-block-link" to='/contact'>{ (this.props.page === 3) && '(' }{ (this.props.floatingMenu) ? 'cnt' : 'Contact' }{ (this.props.page === 3) && ')' }</Link></div>
           </div>
-          <div className={css('header-block-wrap', {'is-floating': this.props.floatingMenu, 'is-blurred': this.props.headerBlurred})} style={{opacity: this.props.headerOpacity, filter: `blur(${this.props.headerBlur}px)`}}>
+          <div className={css('header-block-wrap', {'is-blurred': this.props.headerBlurred})} style={{opacity: this.props.headerOpacity, filter: `blur(${this.props.headerBlur}px)`}}>
             <div className='header-block hide-on-mob'><a className='header-block-link-small' href={this.props.facebook}>Fb</a></div>
             <div className='header-block hide-on-mob'><a className='header-block-link-small' href={this.props.instagram}>Inst</a></div>
             <div className='header-block'>
