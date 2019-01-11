@@ -210,50 +210,58 @@
 }
 
 .header-block-arrow {
-    position: relative;
-    display: block;
-    transform: rotate(-90deg);
-    transition: transform .3s linear;
+  position: relative;
+  display: block;
+  transform: rotate(-90deg);
+  transition: transform .3s linear;
 
-    &-wrap {
-      position: fixed;
-      top: 0;
-      left: 20px;
-      top: 17px;
-      display: flex;
-      align-items: center;
-      font-family: Helvetica;
-      font-size: 24px;
-      color: #000000;
-      letter-spacing: 0.3px;
-      line-height: 32px;
-      transition: all .3s linear;
-      z-index: 1;
+  &.is-rotated {
+    transform: rotate(-45deg);
+  }
 
-      &.is-hidden {
-        @media (min-width: 1024px) {
-          opacity: 0;
-          visibility: hidden;
-        }
-      }
+  &.is-index {
+    transform: rotate(0deg);
+  }
 
-      &.is-visible {
-        @media (min-width: 1024px) {
-          opacity: 1;
-          visibility: visible;
-        }
-      }
+  &.is-inversed path {
+    stroke: white;
+  }
 
-      &.is-index .header-block-arrow {
-        transform: rotate(0deg);
-      }
+  &-wrap {
+    position: fixed;
+    top: 0;
+    left: 20px;
+    top: 17px;
+    display: flex;
+    align-items: center;
+    font-family: Helvetica;
+    font-size: 24px;
+    color: #000000;
+    letter-spacing: 0.3px;
+    line-height: 32px;
+    transition: all .3s linear;
+    z-index: 3;
 
+    &.is-hidden {
       @media (min-width: 1024px) {
-        z-index: 4;
-        left: 32px;
+        opacity: 0;
+        visibility: hidden;
       }
     }
+
+    &.is-visible {
+      @media (min-width: 1024px) {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      z-index: 4;
+      left: 32px;
+    }
   }
+}
 
 .header-block-logo {
   position: relative;
@@ -301,7 +309,6 @@
 .header-floating {
   &-wrap {
     position: fixed;
-    display: flex;
     flex-direction: column;
     justify-content: space-between;
     opacity: 0;
@@ -315,6 +322,12 @@
     &.is-active {
       opacity: 1;
       visibility: visible;
+    }
+
+    display: none;
+
+    @media (min-width: 1024px) {
+      display: flex;
     }
   }
 
@@ -331,7 +344,7 @@
 
   &-menu-block-link {
     position: relative;
-    display: none;
+    display: block;
     font-size: 24px;
     letter-spacing: 0.3px;
     line-height: 32px;
@@ -341,10 +354,6 @@
 
     &:hover {
       opacity: 0.8;
-    }
-
-    @media (min-width: 1024px) {
-      display: block;
     }
 
     &.is-active {

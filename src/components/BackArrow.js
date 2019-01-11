@@ -6,9 +6,9 @@ import Link from '../helpers/Link'
 export default class extends Component {
   render () {
     return (
-      <div className={css('header-block-arrow-wrap', {'is-hidden': !this.props.hasScrolled, 'is-visible': (this.props.index === 1) || (this.props.index === 2) || (this.props.index === 3), 'is-index': this.props.index === 0})}>
+      <div className={css('header-block-arrow-wrap', {'is-hidden': !this.props.hasScrolled, 'is-visible': (this.props.index === 1) || (this.props.index === 2) || (this.props.index === 3)})}>
         <Link className="header-block-link" to='/'>
-          <span className='header-block-arrow'>
+          <span className={css('header-block-arrow', {'is-inversed': this.props.index === 3, 'is-index': this.props.index === 0, 'is-rotated': this.props.arrowRotated})}>
             <svg width="21px" height="21px" viewBox="0 0 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                 <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                     <g transform="translate(-33.000000, -246.000000)" fill="#000000">

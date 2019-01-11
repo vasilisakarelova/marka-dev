@@ -6,7 +6,7 @@ export default class extends Component {
 
   render () {
     return (
-      <div className='footer-wrap' style={{opacity: this.props.footerOpacity, filter: `blur(${this.props.footerBlur}px)`}}>
+      <div className={css('footer-wrap', {'is-inversed': this.props.page === 3})} style={{opacity: this.props.footerOpacity, filter: `blur(${this.props.footerBlur}px)`}}>
         <div className='footer-container'>
           <div className='footer-block'>
             <span className='footer-side'>2018 © All rights reserved</span>

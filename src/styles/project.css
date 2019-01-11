@@ -103,7 +103,7 @@
     grid-column: span 2;
 
     @media (min-width: 1024px) {
-      grid-column: 9/span 4;
+      grid-column: 10 / span 3;
       grid-row: 2;
     }
 

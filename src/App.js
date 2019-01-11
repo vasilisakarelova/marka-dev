@@ -38,7 +38,8 @@ export default class App extends Component {
       filtered: [],
       activeTag: 'all',
       toggleTags: false,
-      headerBlurred: false
+      headerBlurred: false,
+      arrowRotated: false
     }
 
     this.initRouting = this.initRouting.bind(this)
@@ -49,6 +50,7 @@ export default class App extends Component {
     this.filter = this.filter.bind(this)
     this.fixScrollBtn = this.fixScrollBtn.bind(this)
     this.toggleTags = this.toggleTags.bind(this)
+    this.rotateArrow = this.rotateArrow.bind(this)
   }
 
   componentDidMount() {
@@ -157,6 +159,12 @@ export default class App extends Component {
         }
     };
     animateScroll();
+  }
+
+  rotateArrow (type) {
+    this.setState({
+      arrowRotated: type
+    })
   }
 
   handleResize (height) {
@@ -296,7 +304,7 @@ export default class App extends Component {
         { this.state.toggleTags && <CommonTags index={this.state.index} activeTag={this.state.activeTag} filter={this.filter} tags={this.props.data[lang].tags} /> }
         <div className={css('scroll-wrap', {'is-invert': this.state.isInvert})} ref='main'>
         <div className={css('scroll-inner', {'is-index': index === 0})}>
-          <BackArrow index={this.state.index} hasScrolled={this.state.hasScrolled} />
+          <BackArrow index={this.state.index} hasScrolled={this.state.hasScrolled} arrowRotated={this.state.arrowRotated} />
           <Header headerRef={el => this.headerRef = el} page={this.state.index} hasScrolled={this.state.hasScrolled}
             animationEnded={this.state.animationEnded}
             animationArrived={this.state.animationArrived}
@@ -317,6 +325,7 @@ export default class App extends Component {
                 toggleTags={this.toggleTags}
                 filtered={this.state.filtered} filter={this.filter} activeTag={this.state.activeTag}
                 projectListRef={el => this.projectListRef = el}
+                rotateArrow={this.rotateArrow}
                 scroll={this.state.scrolled} handleResize={this.handleResize}
                 setTagsWidth={this.setTagsWidth}
                 fixScrollBtn={this.fixScrollBtn} />
@@ -336,7 +345,7 @@ export default class App extends Component {
               </svg>
             </div>
           }
-          <Footer isInvisible={!this.state.animationArrived} footerOpacity={this.state.footerOpacity} footerBlur={this.state.footerBlur} />
+          <Footer page={this.state.index} footerOpacity={this.state.footerOpacity} footerBlur={this.state.footerBlur} />
         </div>
       </div>
       </div>
