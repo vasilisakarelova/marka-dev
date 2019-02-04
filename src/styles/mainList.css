@@ -79,7 +79,7 @@
     color: $text;
     cursor: pointer;
 
-    @media (min-width: 1440px) {
+    @media (min-width: 768px) {
       font-size: 48px;
       line-height: 48px;
       letter-spacing: 0.6px;
@@ -166,12 +166,6 @@
   text-transform: uppercase;
   white-space: nowrap;
   color: $text;
-
-  @media (min-width: 400px) and (max-width: 767px) {
-    font-size: 22px;
-    line-height: 36px;
-    letter-spacing: .3px;
-  }
 
   @media (min-width: 768px) {
     font-size: 48px;

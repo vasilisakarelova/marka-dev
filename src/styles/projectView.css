@@ -55,6 +55,7 @@
 
   &.on-project {
     grid-column: span 1;
+
     @media (min-width: 1024px) {
       grid-column: span 4;
       display: grid;

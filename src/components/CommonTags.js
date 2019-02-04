@@ -4,7 +4,7 @@ import * as css from 'classnames'
 export default class App extends Component {
   render () {
     return (
-      <div className='common-tags'>
+      <div className={css('common-tags', {'is-hidden': this.props.index === 2 || this.props.index === 3})}>
         <div className='project-list-tags grid'>
           <div className='project-list-tags-container'>
             <div className='project-list-tags-inner'>

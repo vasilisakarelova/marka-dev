@@ -401,6 +401,7 @@
     letter-spacing: 0.8px;
     font-family: 'TStar Pro Medium';
     color: #000000;
+    cursor: pointer;
 
     &:hover {
       opacity: 0.8;

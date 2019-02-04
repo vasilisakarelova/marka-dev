@@ -4,6 +4,16 @@ import * as css from 'classnames'
 import Link from '../helpers/Link'
 
 export default class extends Component {
+  constructor (props) {
+    super(props)
+
+    this.setLanguage = this.setLanguage.bind(this)
+  }
+
+  setLanguage (lang) {
+    this.props.setLanguage(lang)
+  }
+
   render () {
     return (
       <div className={css('header-floating-wrap', {'is-active': this.props.floatingMenu})} ref={this.props.floatingMenuRef}>

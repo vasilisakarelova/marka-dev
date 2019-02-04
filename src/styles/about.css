@@ -133,7 +133,7 @@
     display: block;
     width: 100%;
     white-space: nowrap;
-
+    color: black;/*$text;*/
   }
 
   &-team-member-photo {

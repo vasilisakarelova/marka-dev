@@ -5,6 +5,7 @@ import * as css from 'classnames'
 
 import getBrowser from './helpers/getBrowser.js'
 import Link from './helpers/Link'
+import scrollTo from './helpers/scrollTo.js'
 
 import Header from './components/Header'
 import HeaderFloating from './components/HeaderFloating'
@@ -44,13 +45,21 @@ export default class App extends Component {
 
     this.initRouting = this.initRouting.bind(this)
     this.handleResize = this.handleResize.bind(this)
-    this.scrollTo = this.scrollTo.bind(this)
     this.setLanguage = this.setLanguage.bind(this)
     this.closeModal = this.closeModal.bind(this)
     this.filter = this.filter.bind(this)
     this.fixScrollBtn = this.fixScrollBtn.bind(this)
     this.toggleTags = this.toggleTags.bind(this)
     this.rotateArrow = this.rotateArrow.bind(this)
+    this.handleProjectScroll = this.handleProjectScroll.bind(this)
+  }
+
+  handleProjectScroll (ev) {
+    const scrolled = (window.pageYOffset || ev.target.scrollTop)  - (ev.target.clientTop || 0)
+    const maxScroll = ev.target.scrollHeight - ev.target.offsetHeight
+    if (scrolled >= (maxScroll - ev.target.offsetHeight)) {
+      //console.log('start to fade')
+    }
   }
 
   componentDidMount() {
@@ -66,31 +75,7 @@ export default class App extends Component {
     document.addEventListener('scrolled', (ev) => {
       const scrolled = ev.data.top
 
-      let containerBounds = {
-        top: this.refs.SwipeableViews.rootNode.getBoundingClientRect().top,
-        height: this.refs.SwipeableViews.rootNode.getBoundingClientRect().height
-      }
-
-      let boundInView = (window.innerHeight - containerBounds.height + 16) >= containerBounds.top //16 is extra passing for ruonded bounds
-
-      if (this.state.index === 0) {
-        boundInView = (window.innerHeight - containerBounds.height + 16 + 78 + 16) >= containerBounds.top //16 is extra passing for ruonded bounds, 63 height of view all btn
-      }
-
-      if (boundInView) {
-        const scrolledAfterMenu = (scrolled - this.headerRef.offsetHeight)
-        const bound = containerBounds.height - window.innerHeight - 16
-        let extra = scrolledAfterMenu - bound
-
-        if (this.state.index === 0) {
-          extra = scrolledAfterMenu - bound + 98
-        }
-
-        this.floatingMenuRef.style.height = `calc(100% - 60px - 40px - 20px - ${extra}px)`
-      } else {
-        this.floatingMenuRef.style.height = ''
-      }
-
+      // блюр и прозрачность меню и футера про скролле
       let opacity = 0
       let blur = 0
       let footerOpacity = 1
@@ -129,38 +114,6 @@ export default class App extends Component {
     })
   }
 
-  scrollTo (to, duration) {
-    let element = document.documentElement
-    if (getBrowser().name === 'Safari') {
-      element = document.body
-    }
-    const start = element.scrollTop
-    const change = to - start
-    const startDate = +new Date()
-    // t = current time
-    // b = start value
-    // c = change in value
-    // d = duration
-    const easeInOutQuad = function(t, b, c, d) {
-        t /= d/2;
-        if (t < 1) return c/2*t*t + b;
-        t--;
-        return -c/2 * (t*(t-2) - 1) + b;
-    }
-    const animateScroll = function() {
-        const currentDate = +new Date();
-        const currentTime = currentDate - startDate;
-        element.scrollTop = parseInt(easeInOutQuad(currentTime, start, change, duration),10)
-        if(currentTime < duration) {
-            requestAnimationFrame(animateScroll);
-        }
-        else {
-            element.scrollTop = to;
-        }
-    };
-    animateScroll();
-  }
-
   rotateArrow (type) {
     this.setState({
       arrowRotated: type
@@ -170,6 +123,14 @@ export default class App extends Component {
   handleResize (height) {
     this.updateHeight()
     this.refs.SwipeableViews.containerNode.style.height = `${height}px`
+    setTimeout(() => {
+      if (this.refs.main.offsetHeight === window.innerHeight) {
+        this.setState({
+          footerOpacity: 1,
+          footerBlur: 0
+        })
+      }
+    }, 400)
   }
 
   initRouting(dataEn, dataRu) {
@@ -184,7 +145,9 @@ export default class App extends Component {
         headerBlurred: false
       })
 
-      this.scrollTo(0, 400)
+      document.documentElement.classList.remove('is-locked')
+
+      //this.scrollTo(0, 400)
     })
 
     page('/projects', (ctx, next) => {
@@ -196,7 +159,9 @@ export default class App extends Component {
         headerBlurred: false
       })
 
-      this.scrollTo(0, 400)
+      document.documentElement.classList.remove('is-locked')
+
+      //this.scrollTo(0, 400)
     })
 
     page('/about-us', (ctx, next) => {
@@ -207,6 +172,8 @@ export default class App extends Component {
         openModal: false,
         headerBlurred: false
       })
+
+      document.documentElement.classList.remove('is-locked')
     })
 
     page('/contact', (ctx, next) => {
@@ -217,6 +184,8 @@ export default class App extends Component {
         openModal: false,
         headerBlurred: false
       })
+
+      document.documentElement.classList.remove('is-locked')
     })
 
     dataEn.projects.forEach((project, idx) => {
@@ -231,7 +200,7 @@ export default class App extends Component {
           headerBlurred: true
         })
 
-        this.scrollTo(0, 400)
+        document.documentElement.classList.add('is-locked')
       })
     })
 
@@ -312,7 +281,7 @@ export default class App extends Component {
             facebook={facebook} instagram={instagram}
             headerOpacity={this.state.headerOpacity} headerBlurred={this.state.headerBlurred} headerBlur={this.state.headerBlur} />
           <div className={css('main-modal')}>
-            <HeaderFloating floatingMenuRef={el => this.floatingMenuRef = el}
+            <HeaderFloating
               floatingMenu={this.state.floatingMenu} page={this.state.index}
               facebook={facebook} instagram={instagram} lang={this.state.lang} setLanguage={this.setLanguage} />
             <SwipeableViews
@@ -333,9 +302,9 @@ export default class App extends Component {
               <Contact data={this.props.data[lang].contact} />
             </SwipeableViews>
           </div>
-          { this.state.openModal && <Project openModal={this.state.openModal} lang={lang} closeModal={this.closeModal} modalData={this.state.modalData} />}
+          { this.state.openModal && <Project openModal={this.state.openModal} lang={lang} setLanguage={this.setLanguage} closeModal={this.closeModal} modalData={this.state.modalData} handleProjectScroll={this.handleProjectScroll}/>}
           { this.state.isMobile &&
-            <div className={css('scroll-top-btn', {'is-visible': this.state.floatingMenu, 'is-arrived-0': this.state.fixScrollBtn0, 'is-arrived-1': this.state.fixScrollBtn1})} onClick={ev => this.scrollTo(0, 500)}>
+            <div className={css('scroll-top-btn', {'is-visible': this.state.floatingMenu, 'is-arrived-0': this.state.fixScrollBtn0, 'is-arrived-1': this.state.fixScrollBtn1})} onClick={ev => scrollTo(0, 500)}>
               <svg width="21px" height="21px" viewBox="0 0 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                   <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                       <g transform="translate(-33.000000, -246.000000)" fill="#000000">

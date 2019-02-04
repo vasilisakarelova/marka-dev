@@ -78,7 +78,7 @@
     color: $text;
     cursor: pointer;
 
-    @media (min-width: 1440px) {
+    @media (min-width: 768px) {
       font-size: 48px;
       line-height: 48px;
       letter-spacing: 0.6px;
@@ -135,6 +135,10 @@
     padding-left: 8px;
     padding-right: 0;
   }
+}
+
+.project-list-container-inner {
+  padding-bottom: 48px;
 }
 
 .project-list-btn {

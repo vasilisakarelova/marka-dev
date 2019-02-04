@@ -6,9 +6,17 @@
   min-width: 100%;
   background-color: rgba(255, 255, 255, 0.75);
 
+  position: fixed;
+  overflow: scroll;
+
   .border-space-saver {
-    transform: translateY(44px);
-    transition: transform .4s linear;
+    transform: translateY(100vh);
+    transition: transform 1s ease-in-out;
+    margin-bottom: 100vh;
+  }
+
+  .border-wrap {
+    min-height: calc(100vh - 44px - 16px - 16px);
   }
 }
 
@@ -246,5 +254,11 @@
     font-size: 16px;
     line-height: 20px;
     letter-spacing: 0.8px;
+  }
+
+  &-constructor-lang-link {
+    position: relative;
+    color: inherit;
+    cursor: pointer;
   }
 }
