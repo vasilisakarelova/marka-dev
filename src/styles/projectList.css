@@ -137,8 +137,15 @@
   }
 }
 
-.project-list-container-inner {
-  padding-bottom: 48px;
+.project-list-container {
+  .header-floating-footer {
+    padding-bottom: 48px;
+  }
+  
+  &-inner {
+    padding-bottom: 48px;
+  }
+
 }
 
 .project-list-btn {

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import * as css from 'classnames'
 
+import HeaderFooterFloating from './HeaderFloatingFooter'
+
 export default class extends Component {
   state = {
     currentMember: null,
@@ -40,6 +42,7 @@ export default class extends Component {
           <div className='border-wrap'>
             <div className='about-wrap'>
               <div className='about-container grid'>
+                <HeaderFooterFloating isStatic={true} isVisible={this.props.isFooterFixed} />
                 <div className={css('about-team-member-photo', {'is-active': this.state.currentMember !== null })}
                   style={{top: `${this.state.randomTop}px`, left: `calc(200% + 32px + ${this.state.randomLeft}px)`}}>
                   <img src={this.state.currentMember} alt='get who it is!'/>

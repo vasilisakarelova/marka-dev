@@ -40,7 +40,8 @@ export default class App extends Component {
       activeTag: 'all',
       toggleTags: false,
       headerBlurred: false,
-      arrowRotated: false
+      arrowRotated: false,
+      isFooterFixed: false
     }
 
     this.initRouting = this.initRouting.bind(this)
@@ -74,6 +75,30 @@ export default class App extends Component {
 
     document.addEventListener('scrolled', (ev) => {
       const scrolled = ev.data.top
+
+      const mainList = document.querySelector('.main-list-container')
+      const projectList = document.querySelector('.project-list-container')
+      const aboutList = document.querySelector('.about-container')
+
+      switch (true) {
+        case this.state.index === 0 && mainList !== null:
+          this.setState({
+            isFooterFixed: (window.innerHeight - 40) >= mainList.getBoundingClientRect().bottom
+          })
+          break;
+        case this.state.index === 1 && projectList !== null:
+          this.setState({
+            isFooterFixed: (window.innerHeight + 8) >= projectList.getBoundingClientRect().bottom
+          })
+          break;
+        case this.state.index === 2 && aboutList !== null:
+          this.setState({
+            isFooterFixed: (window.innerHeight + 23) >= aboutList.getBoundingClientRect().bottom
+          })
+          break;
+        default:
+          break
+      }
 
       // блюр и прозрачность меню и футера про скролле
       let opacity = 0
@@ -282,23 +307,24 @@ export default class App extends Component {
             headerOpacity={this.state.headerOpacity} headerBlurred={this.state.headerBlurred} headerBlur={this.state.headerBlur} />
           <div className={css('main-modal')}>
             <HeaderFloating
-              floatingMenu={this.state.floatingMenu} page={this.state.index}
+              floatingMenu={this.state.floatingMenu} page={this.state.index} isFooterFixed={this.state.isFooterFixed}
               facebook={facebook} instagram={instagram} lang={this.state.lang} setLanguage={this.setLanguage} />
             <SwipeableViews
               ref='SwipeableViews'
               animateHeight
               action={hooks => this.updateHeight = hooks.updateHeight }
               index={index} className={`is-active-slide-${index}`}>
-              <Main data={this.props.data} lang={lang} scroll={this.state.scrolled} filter={this.filter} handleResize={this.handleResize} fixScrollBtn={this.fixScrollBtn} toggleTags={this.toggleTags}/>
+              <Main data={this.props.data} lang={lang} isFooterFixed={this.state.isFooterFixed}
+                scroll={this.state.scrolled} filter={this.filter} handleResize={this.handleResize} fixScrollBtn={this.fixScrollBtn} toggleTags={this.toggleTags}/>
               <ProjectList data={this.props.data} lang={lang}
-                toggleTags={this.toggleTags}
+                toggleTags={this.toggleTags} isFooterFixed={this.state.isFooterFixed}
                 filtered={this.state.filtered} filter={this.filter} activeTag={this.state.activeTag}
                 projectListRef={el => this.projectListRef = el}
                 rotateArrow={this.rotateArrow}
                 scroll={this.state.scrolled} handleResize={this.handleResize}
                 setTagsWidth={this.setTagsWidth}
                 fixScrollBtn={this.fixScrollBtn} />
-              <About data={this.props.data[lang].about} scroll={this.state.scrolled} />
+              <About data={this.props.data[lang].about} scroll={this.state.scrolled} isFooterFixed={this.state.isFooterFixed} />
               <Contact data={this.props.data[lang].contact} />
             </SwipeableViews>
           </div>

@@ -3,6 +3,7 @@ import * as css from 'classnames'
 
 import ProjectView from './ProjectView'
 import Link from '../helpers/Link'
+import HeaderFooterFloating from './HeaderFloatingFooter'
 
 export default class extends Component {
   constructor (props) {
@@ -28,8 +29,6 @@ export default class extends Component {
     })
   }
 
-  componentWillReceiveProps(newProps) {}
-
   filter (tag) {
     this.props.filter(tag)
   }
@@ -37,13 +36,9 @@ export default class extends Component {
   render () {
     const { lang } = this.props
 
-    //this.props.data[lang].highlights
-    //this.state.data[lang].projects
-
     let highlights = this.props.data[lang].highlights.map(highlight => {
       return this.state.data[lang].projects.find((project, projectId) => project.url === highlight)
     })
-    console.log(highlights)
 
     return (
       <div className='border-space-saver' ref='test'>
@@ -63,6 +58,7 @@ export default class extends Component {
                 </div>
               </div>
               <div className='main-list-container grid'>
+                <HeaderFooterFloating isStatic={true} isVisible={this.props.isFooterFixed} />
                 <div className='main-list-container-inner grid-menor'>
                   { highlights.map((project,idx) => {
                       let isLast = (idx + 1 === this.props.data[lang].highlights.length)

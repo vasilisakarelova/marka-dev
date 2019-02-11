@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import * as css from 'classnames'
 
 import ProjectView from './ProjectView'
+import HeaderFooterFloating from './HeaderFloatingFooter'
 
 export default class extends Component {
   constructor (props) {
@@ -51,6 +52,7 @@ export default class extends Component {
                 </div>
               </div>
               <div className='project-list-container grid'>
+                <HeaderFooterFloating isStatic={true} isVisible={this.props.isFooterFixed} />
                 <div className='project-list-container-inner grid-menor'>
                   { projects.map((project,idx) => {
                       let isLast = (idx + 1 === projects.length)

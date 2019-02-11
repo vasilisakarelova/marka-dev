@@ -16,7 +16,7 @@ export default class extends Component {
 
   render () {
     return (
-      <div className={css('header-floating-footer', {'is-active': this.props.floatingMenu})}>
+      <div className={css('header-floating-footer', {'is-hidden': !this.props.isVisible, 'is-static': this.props.isStatic})}>
         <div className='header-floating-footer-block'><a className='header-floating-footer-block-link' href={this.props.facebook}>Fb</a></div>
         <div className='header-floating-footer-block'><a className='header-floating-footer-block-link' href={this.props.instagram}>Inst</a></div>
         <div className='header-floating-footer-block'>

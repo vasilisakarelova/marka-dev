@@ -1,4 +1,11 @@
 .about {
+  &-container {
+    .header-floating-footer {
+      grid-row: 3;
+      padding-bottom: 63px;
+    }
+  }
+
   &-intro-container {
     position: relative;
     display: block;
