@@ -8,6 +8,11 @@ import 'intersection-observer'
 import App from './App'
 import { unregister } from './registerServiceWorker'
 
+/*
+import testEn from './testEn.js'
+import testRu from './testRu.js'
+*/
+
 fetch('https://marka.moscow/admin/api')
   .then((response) => {
     if (response.status >= 400) {

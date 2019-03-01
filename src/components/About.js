@@ -22,10 +22,11 @@ export default class extends Component {
       return Math.random() * (max - min) + min;
     }
 
+    console.log(this.props.scroll)
     this.setState({
       currentMember: src,
       randomLeft: getRandomArbitrary(0, (window.innerWidth - 300)),
-      randomTop: getRandomArbitrary((this.props.scroll - 280), (this.props.scroll + window.innerHeight - 300 - 280))
+      randomTop: getRandomArbitrary((this.props.scroll - 60), (this.props.scroll + window.innerHeight - 300 - 60))
     })
   }
 
@@ -70,12 +71,9 @@ export default class extends Component {
                     { this.props.data.team.map((member,idx) => {
                         return (
                           <div className='about-team-member' key={idx}>
-                            <a href={member.social} className='about-team-member-link'
-                              onMouseEnter={ev => this.setMemeberImage(member.photo)}
-                              onMouseLeave={ev => this.removeMemeberImage(member.photo)}
-                              terget='_blank'>
+                            <div className='about-team-member-link' onMouseEnter={ev => this.setMemeberImage(member.photo)} onMouseLeave={ev => this.removeMemeberImage(member.photo)}>
                               <span className='about-team-member-name'>{member.name}</span>
-                            </a>
+                            </div>
                           </div>
                         )
                       })

@@ -121,12 +121,6 @@ export default class extends Component {
                     <div className='project-inner-constructor-desc-tags'>{data.tags}</div>
                     <div>{data.year}</div>
                     <div>{data.location}</div>
-                    <div>
-                      {this.props.lang === 'ru'
-                        ? <span className='project-inner-constructor-lang-link' onClick={ev => this.setLanguage('en')}>(Read in Eglish)</span>
-                        : <span className='project-inner-constructor-lang-link' onClick={ev => this.setLanguage('ru')}>(Прочитать на русском)</span>
-                      }
-                    </div>
                   </div>
                   { Object.keys(data.constructor).map((block, idx) => {
                       const info = data.constructor[block]
@@ -135,12 +129,17 @@ export default class extends Component {
                         return (
                           <div className='project-inner-constructor-text' key={idx}>
                             {info}
+                            <div className='project-inner-constructor-lang'>
+                              {this.props.lang === 'ru'
+                                ? <span className='project-inner-constructor-lang-link' onClick={ev => this.setLanguage('en')}>(Read in Eglish)</span>
+                                : <span className='project-inner-constructor-lang-link' onClick={ev => this.setLanguage('ru')}>(Прочитать на русском)</span>
+                              }
+                            </div>
                           </div>
                         )
                       } else if (block === 'slider') {
                         return (
                           <div className='project-inner-constructor-slider-wrap grid' key={idx}>
-                            <div className='project-inner-constructor-slider-count'>{info.length} imgs</div>
                             <div className='project-inner-constructor-slider-scroll grid' ref='sliderWrap'>
                               <div className='project-inner-constructor-slider' ref='slider'>
                                 { info.map((img,imgIdx) => {

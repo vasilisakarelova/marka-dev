@@ -3,8 +3,6 @@ import page from 'page'
 import SwipeableViews from 'react-swipeable-views'
 import * as css from 'classnames'
 
-import getBrowser from './helpers/getBrowser.js'
-import Link from './helpers/Link'
 import scrollTo from './helpers/scrollTo.js'
 
 import Header from './components/Header'

@@ -11,8 +11,8 @@ export default class extends Component {
           <div className='footer-block'>
             <span className='footer-side'>2018 © All rights reserved</span>
             <div className='footer-side footer-side--mobile'>
-              <div className='footer-block--mobile'><a className='footer-block-link-small' href={this.props.facebook}>Fb</a></div>
-              <div className='footer-block--mobile'><a className='footer-block-link-small' href={this.props.instagram}>Inst</a></div>
+              <div className='footer-block--mobile'><a className='footer-block-link-small' target='_blank' href={this.props.facebook}>Fb</a></div>
+              <div className='footer-block--mobile'><a className='footer-block-link-small' target='_blank' href={this.props.instagram}>Inst</a></div>
             </div>
           </div>
         </div>

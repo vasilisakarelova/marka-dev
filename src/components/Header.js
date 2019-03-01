@@ -17,7 +17,7 @@ export default class extends Component {
 
   componentDidMount () {
     const options = {
-      strings: ["\\//\\/\\\\\\\\\/", "/\\/\\ARKA", "¯\_(ツ)_/¯", "_MA|^KA_", "_MARK/\\_", "_M/\\RKA_"],/*  \//\/\\\\\\\/  */
+      strings: ["\\//\\/\\\\\\\\\/", "/\\/\\ARKA", "_MA|^KA_", "_MARK/\\_", "_M/\\RKA_"],/*  \//\/\\\\\\\/  */
       typeSpeed: 30,
       showCursor: false,
       onStringTyped: (arrayPos, self) => {
@@ -67,8 +67,8 @@ export default class extends Component {
             <div className='header-block'><Link motion='scrollTop' className="header-block-link" to='/contact'>{ (this.props.page === 3) && '(' }{ (this.props.floatingMenu) ? 'cnt' : 'Contact' }{ (this.props.page === 3) && ')' }</Link></div>
           </div>
           <div className={css('header-block-wrap', {'is-blurred': this.props.headerBlurred})} style={{opacity: this.props.headerOpacity, filter: `blur(${this.props.headerBlur}px)`}}>
-            <div className='header-block hide-on-mob'><a className='header-block-link-small' href={this.props.facebook}>Fb</a></div>
-            <div className='header-block hide-on-mob'><a className='header-block-link-small' href={this.props.instagram}>Inst</a></div>
+            <div className='header-block hide-on-mob'><a className='header-block-link-small' target='_blank' href={this.props.facebook}>Fb</a></div>
+            <div className='header-block hide-on-mob'><a className='header-block-link-small' target='_blank' href={this.props.instagram}>Inst</a></div>
             <div className='header-block'>
               {this.props.lang === 'ru'
                 ? <span className='header-block-link-small is-btn' onClick={ev => this.setLanguage('en')}>{(this.props.floatingMenu || this.state.isMobile) ? 'En' : 'English'}</span>
