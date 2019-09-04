@@ -8,11 +8,10 @@ import 'intersection-observer'
 import App from './App'
 import { unregister } from './registerServiceWorker'
 
+// import testEn from './testEn.js'
+// import testRu from './testRu.js'
 
-import testEn from './testEn.js'
-import testRu from './testRu.js'
 
-/*
 fetch('https://marka.moscow/admin/api')
   .then((response) => {
     if (response.status >= 400) {
@@ -43,12 +42,13 @@ fetch('https://marka.moscow/admin/api')
       })
 
   })
-  */
 
-  let data = {
-    ru: testRu,
-    en: testEn
-  }
-  ReactDOM.render(<App data={data} />, document.getElementById('root'))
-  unregister()
-  resized()
+
+  // let data = {
+  //   ru: testRu,
+  //   en: testEn
+  // }
+  //
+  // ReactDOM.render(<App data={data} />, document.getElementById('root'))
+  // unregister()
+  // resized()

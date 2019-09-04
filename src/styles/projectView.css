@@ -22,22 +22,18 @@
 
     img {
       height: 100%;
-      width: auto;
+      width: 100%;
+      object-fit: cover;
     }
 
     @media (min-width: 1024px) {
       padding-top: 23.056vw;
-
-      img {
-        height: 100%;
-        width: auto;
-      }
     }
   }
 
   &.is-landscape {
     &.on-project .project-view-cover-wrap {
-      padding-top: 31vw;
+      padding-top: 60vw;
 
       @media (min-width: 1024px) {
         padding-top: 15.371vw;
@@ -54,11 +50,13 @@
   }
 
   &.on-project {
-    grid-column: span 1;
-
     &.is-portrait .project-view-cover-wrap {
       @media (max-width: 1023px) {
-        padding-top: 44.595vw;
+        padding-top: 60vw;
+      }
+
+      @media (min-width: 1024px) {
+        width: 15.371vw;
       }
 
       img {

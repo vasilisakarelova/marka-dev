@@ -155,8 +155,6 @@ export default class extends Component {
                                 }
                               </div>
                             </div>
-                            <div className={css('project-inner-constructor-slider-left-btn', {'is-disabled': this.state.currentSliderIdx === 0})} onMouseOver={ev => this.showScroll('left')} onMouseLeave={ev => this.hideScroll('left')} onClick={ev => this.scrollSlider('left', this.state.currentSliderIdx)}></div>
-                            <div className={css('project-inner-constructor-slider-right-btn', {'is-disabled': this.state.currentSliderIdx === (info.length - 2)})} onMouseOver={ev => this.showScroll('right')} onMouseLeave={ev => this.hideScroll('right')} onClick={ev => this.scrollSlider('right', this.state.currentSliderIdx)}></div>
                           </div>
                         )
                       }

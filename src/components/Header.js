@@ -17,7 +17,7 @@ export default class extends Component {
 
   componentDidMount () {
     const options = {
-      strings: ["\\//\\/\\\\\\\\\/", "/\\/\\ARKA", "_MA|^KA_", "_MARK/\\_", "_M/\\RKA_"],/*  \//\/\\\\\\\/  */
+      strings: ["\\//\\/\\\\\\\\\/", "/\\/\\ARKA", "M/\\RKA", "_MA|^KA_", "MAR|&#60;A", "MARK/\\", "MARKA"],
       typeSpeed: 30,
       showCursor: false,
       onStringTyped: (arrayPos, self) => {
@@ -53,10 +53,6 @@ export default class extends Component {
     }, 400)
   }
 
-  setLanguage (lang) {
-    this.props.setLanguage(lang)
-  }
-
   render () {
     return (
       <div className={css('header-wrap', {'is-arrived': this.state.animationEnded, 'is-index': this.props.page === 0, 'is-ready': this.state.animationArrived})} ref={this.props.headerRef}>
@@ -69,12 +65,6 @@ export default class extends Component {
           <div className={css('header-block-wrap', {'is-blurred': this.props.headerBlurred})} style={{opacity: this.props.headerOpacity, filter: `blur(${this.props.headerBlur}px)`}}>
             <div className='header-block hide-on-mob'><a className='header-block-link-small' target='_blank' href={this.props.facebook}>Fb</a></div>
             <div className='header-block hide-on-mob'><a className='header-block-link-small' target='_blank' href={this.props.instagram}>Inst</a></div>
-            <div className='header-block'>
-              {this.props.lang === 'ru'
-                ? <span className='header-block-link-small is-btn' onClick={ev => this.setLanguage('en')}>{(this.props.floatingMenu || this.state.isMobile) ? 'En' : 'English'}</span>
-                : <span className='header-block-link-small is-btn' onClick={ev => this.setLanguage('ru')}>{(this.props.floatingMenu || this.state.isMobile) ? 'Ru' : 'Russian'}</span>
-              }
-            </div>
           </div>
         </div>
         <div className={css('header-block-logo-wrap', {'is-animation-ended': this.state.animationEnded, 'is-arrived': this.state.animationArrived})}

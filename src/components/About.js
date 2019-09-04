@@ -36,6 +36,10 @@ export default class extends Component {
     })
   }
 
+  setLanguage (lang) {
+    this.props.setLanguage(lang)
+  }
+
   render () {
     return (
       <div className='border-space-saver'>
@@ -50,6 +54,12 @@ export default class extends Component {
                 </div>
                 <div className='about-intro grid-menor'>
                   <div className='about-intro-container' dangerouslySetInnerHTML={{__html: this.props.data.intro}}></div>
+                  <div className='about-lang'>
+                    {this.props.lang === 'ru'
+                      ? <span className='project-inner-constructor-lang-link' onClick={ev => this.setLanguage('en')}>(Read in Eglish)</span>
+                      : <span className='project-inner-constructor-lang-link' onClick={ev => this.setLanguage('ru')}>(Прочитать на русском)</span>
+                    }
+                  </div>
                 </div>
                 <div className='about-deed-wrap'>
                   { this.props.data.whatWeDo.split(', ').map((deed,idx) => {

@@ -30,6 +30,15 @@
     }
   }
 
+  &-lang {
+    position: relative;
+    grid-column: span 2;
+
+    @media (min-width: 1024px) {
+      grid-column: 3 / span 6;
+    }
+  }
+
   &-deed-wrap {
     position: relative;
     display: block;

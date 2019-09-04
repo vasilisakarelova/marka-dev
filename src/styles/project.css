@@ -154,6 +154,7 @@
     grid-column: span 2;
     width: calc(100% + 40px);
     left: -20px;
+    padding: 0;
 
     @media (min-width: 1024px) {
       grid-column: span 12;
@@ -199,7 +200,8 @@
 
     @media (min-width: 1024px) {
       display: flex;
-      grid-column: 2 / span 11;
+      flex-direction: column;
+      grid-column: 2 / span 10;
     }
   }
 
@@ -254,19 +256,15 @@
     display: block;
 
     @media (min-width: 1024px) {
-      display: inline-block;
-      margin-right: 20px;
+      display: block;
+      width: 100%;
+      margin-bottom: 20px;
     }
 
     img {
       position: relative;
       display: block;
       width: 100%;
-
-      @media (min-width: 1024px) {
-        height: 30vw;
-        width: auto;
-      }
     }
   }
 

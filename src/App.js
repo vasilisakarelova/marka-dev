@@ -300,7 +300,6 @@ export default class App extends Component {
           <Header headerRef={el => this.headerRef = el} page={this.state.index} hasScrolled={this.state.hasScrolled}
             animationEnded={this.state.animationEnded}
             animationArrived={this.state.animationArrived}
-            lang={this.state.lang} setLanguage={this.setLanguage}
             facebook={facebook} instagram={instagram}
             headerOpacity={this.state.headerOpacity} headerBlurred={this.state.headerBlurred} headerBlur={this.state.headerBlur} />
           <div className={css('main-modal')}>
@@ -322,7 +321,7 @@ export default class App extends Component {
                 scroll={this.state.scrolled} handleResize={this.handleResize}
                 setTagsWidth={this.setTagsWidth}
                 fixScrollBtn={this.fixScrollBtn} />
-              <About data={this.props.data[lang].about} scroll={this.state.scrolled} isFooterFixed={this.state.isFooterFixed} />
+              <About data={this.props.data[lang].about} scroll={this.state.scrolled} isFooterFixed={this.state.isFooterFixed}             lang={this.state.lang} setLanguage={this.setLanguage} />
               <Contact data={this.props.data[lang].contact} />
             </SwipeableViews>
           </div>
