@@ -29,6 +29,9 @@ export default class extends Component {
     if (!this.props.isBlur && ((this.props.dataKey + 1) % 2 === 1)) {
       let height = this.refs.titleHeight.offsetHeight
       let sibling = document.querySelector(`[data-title-key="${this.props.dataKey + 1}"]`)
+
+      if (sibling === null) return
+
       if (height > sibling.offsetHeight) {
         sibling.style.height = `${height}px`
       } else {

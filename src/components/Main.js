@@ -48,12 +48,14 @@ export default class extends Component {
               <div className='main-list-tags grid'>
                 <div className={css('main-list-tags-container', {'is-hidden': this.state.toggleFiedTags})} ref='projectTags'>
                   <div className='main-list-tags-inner'>
-                    { this.props.data[lang].tags.map((tag,idx) => {
-                        return (
-                          <div className={css('main-list-tags-item', {'is-active': this.state.activeTag === tag})} key={idx} onClick={ev => this.filter(tag)}>{tag}</div>
-                        )
-                      })
-                    }
+                    <div className='main-list-tags-scroll'>
+                      { this.props.data[lang].tags.map((tag,idx) => {
+                          return (
+                            <div className={css('main-list-tags-item', {'is-active': this.state.activeTag === tag})} key={idx} onClick={ev => this.filter(tag)}>{tag}</div>
+                          )
+                        })
+                      }
+                    </div>
                   </div>
                 </div>
               </div>

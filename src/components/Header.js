@@ -30,7 +30,7 @@ export default class extends Component {
       }
     }
 
-    const typed = new Typed(this.refs.typingLogo, options)
+    new Typed(this.refs.typingLogo, options)
 
     document.addEventListener('resized', () => {
       this.setState({

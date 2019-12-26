@@ -22,9 +22,7 @@
     width: calc(100% + 40px);
     padding-left: 20px;
     left: -20px;
-    overflow: scroll;
-    -webkit-overflow-scrolling: touch;
-    margin-bottom: -40px;
+    overflow: hidden;
 
     @media (min-width: 1024px) {
       grid-column: 2 / span 11;
@@ -32,8 +30,6 @@
       width: 100%;
       padding-left: 0px;
       left: 0;
-      overflow: hidden;
-      margin-bottom: 0px;
     }
 
     &.is-hidden {
@@ -53,16 +49,24 @@
     position: relative;
     display: flex;
     width: 100%;
+    z-index: 999;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: -40px;
+
+    @media (min-width: 1024px) {
+
+    }
+  }
+
+  &-scroll {
+    display: flex;
+    width: 100%;
     flex-direction: row;
     align-content: space-between;
     justify-content: space-between;
     align-items: center;
-    z-index: 999;
     padding-bottom: 40px;
-
-    @media (min-width: 1024px) {
-      padding-bottom: 0;
-    }
   }
 
   &-item {
@@ -77,15 +81,37 @@
     white-space: nowrap;
     color: $text;
     cursor: pointer;
+    padding: 0 10px;
 
     @media (min-width: 768px) {
       font-size: 48px;
       line-height: 48px;
       letter-spacing: 0.6px;
       padding-right: 0px;
+      padding: 0 15px;
     }
 
-    &:hover,
+    &:first-of-type {
+      padding-left: 0;
+    }
+
+    &:last-of-type {
+      padding-right: 20px;
+
+      @media (min-width: 768px) {
+        padding-right: 0px;
+      }
+    }
+
+    &:hover {
+      @media (min-width: 768px) {
+        color: #fff;
+        opacity: 0.8;
+        text-shadow: 1px 1px 0 rgba(0,0,0,.8), -1px -1px 0 rgba(0,0,0,.8), 1px -1px 0 rgba(0,0,0,.8), -1px 1px 0 rgba(0,0,0,.8), 1px 1px 0 rgba(0,0,0,.8);
+        letter-spacing: .8px;
+      }
+    }
+
     &.is-active {
       color: #fff;
       opacity: 0.8;
@@ -141,7 +167,7 @@
   .header-floating-footer {
     padding-bottom: 48px;
   }
-  
+
   &-inner {
     padding-bottom: 48px;
   }

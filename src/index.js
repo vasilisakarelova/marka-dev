@@ -11,8 +11,9 @@ import { unregister } from './registerServiceWorker'
 // import testEn from './testEn.js'
 // import testRu from './testRu.js'
 
+const origin = window.location.origin
 
-fetch('https://marka.moscow/admin/api')
+fetch(`${origin}/admin/api`)
   .then((response) => {
     if (response.status >= 400) {
       throw new Error("Bad response from server")
@@ -24,9 +25,8 @@ fetch('https://marka.moscow/admin/api')
       ru: {},
       en: apiEn
     }
-    let dataBase = data.en
 
-    fetch('https://marka.moscow/admin/ru/api')
+    fetch(`${origin}/admin/ru/api`)
       .then((response) => {
         if (response.status >= 400) {
           throw new Error("Bad response from server")
@@ -43,12 +43,11 @@ fetch('https://marka.moscow/admin/api')
 
   })
 
-
-  // let data = {
-  //   ru: testRu,
-  //   en: testEn
-  // }
-  //
-  // ReactDOM.render(<App data={data} />, document.getElementById('root'))
-  // unregister()
-  // resized()
+// let data = {
+//   ru: testRu,
+//   en: testEn
+// }
+//
+// ReactDOM.render(<App data={data} />, document.getElementById('root'))
+// unregister()
+// resized()

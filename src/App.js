@@ -61,7 +61,29 @@ export default class App extends Component {
     }
   }
 
+  isolateTouch = (e) => {
+    e.stopPropagation()
+  }
+
+  componentWillUnmount() {
+    const containerNode = this.refs.SwipeableViews.containerNode;
+
+    if (containerNode) {
+      containerNode.removeEventListener('touchstart', this.isolateTouch, { passive: true });
+      containerNode.removeEventListener('touchmove', this.isolateTouch, { passive: true });
+      containerNode.removeEventListener('touchend', this.isolateTouch, { passive: true });
+    }
+  }
+
   componentDidMount() {
+    const containerNode = this.refs.SwipeableViews.containerNode;
+
+    if (containerNode) {
+      containerNode.addEventListener('touchstart', this.isolateTouch, { passive: true });
+      containerNode.addEventListener('touchmove', this.isolateTouch, { passive: true });
+      containerNode.addEventListener('touchend', this.isolateTouch, { passive: true });
+    }
+
     this.initRouting(this.props.data['en'],this.props.data['ru'])
     document.addEventListener('resized', () => {
       this.handleResize()
@@ -147,12 +169,13 @@ export default class App extends Component {
     this.updateHeight()
     this.refs.SwipeableViews.containerNode.style.height = `${height}px`
     setTimeout(() => {
-      if (this.refs.main.offsetHeight === window.innerHeight) {
-        this.setState({
-          footerOpacity: 1,
-          footerBlur: 0
-        })
-      }
+      // console.log(this.refs)
+      // if (this.refs.main.offsetHeight === window.innerHeight) {
+      //   this.setState({
+      //     footerOpacity: 1,
+      //     footerBlur: 0
+      //   })
+      // }
     }, 400)
   }
 
@@ -295,51 +318,51 @@ export default class App extends Component {
       <div>
         { this.state.toggleTags && <CommonTags index={this.state.index} activeTag={this.state.activeTag} filter={this.filter} tags={this.props.data[lang].tags} /> }
         <div className={css('scroll-wrap', {'is-invert': this.state.isInvert})} ref='main'>
-        <div className={css('scroll-inner', {'is-index': index === 0})}>
-          <BackArrow index={this.state.index} hasScrolled={this.state.hasScrolled} arrowRotated={this.state.arrowRotated} />
-          <Header headerRef={el => this.headerRef = el} page={this.state.index} hasScrolled={this.state.hasScrolled}
-            animationEnded={this.state.animationEnded}
-            animationArrived={this.state.animationArrived}
-            facebook={facebook} instagram={instagram}
-            headerOpacity={this.state.headerOpacity} headerBlurred={this.state.headerBlurred} headerBlur={this.state.headerBlur} />
-          <div className={css('main-modal')}>
-            <HeaderFloating
-              floatingMenu={this.state.floatingMenu} page={this.state.index} isFooterFixed={this.state.isFooterFixed}
-              facebook={facebook} instagram={instagram} lang={this.state.lang} setLanguage={this.setLanguage} />
-            <SwipeableViews
-              ref='SwipeableViews'
-              animateHeight
-              action={hooks => this.updateHeight = hooks.updateHeight }
-              index={index} className={`is-active-slide-${index}`}>
-              <Main data={this.props.data} lang={lang} isFooterFixed={this.state.isFooterFixed}
-                scroll={this.state.scrolled} filter={this.filter} handleResize={this.handleResize} fixScrollBtn={this.fixScrollBtn} toggleTags={this.toggleTags}/>
-              <ProjectList data={this.props.data} lang={lang}
-                toggleTags={this.toggleTags} isFooterFixed={this.state.isFooterFixed}
-                filtered={this.state.filtered} filter={this.filter} activeTag={this.state.activeTag}
-                projectListRef={el => this.projectListRef = el}
-                rotateArrow={this.rotateArrow}
-                scroll={this.state.scrolled} handleResize={this.handleResize}
-                setTagsWidth={this.setTagsWidth}
-                fixScrollBtn={this.fixScrollBtn} />
-              <About data={this.props.data[lang].about} scroll={this.state.scrolled} isFooterFixed={this.state.isFooterFixed}             lang={this.state.lang} setLanguage={this.setLanguage} />
-              <Contact data={this.props.data[lang].contact} />
-            </SwipeableViews>
-          </div>
-          { this.state.openModal && <Project openModal={this.state.openModal} lang={lang} setLanguage={this.setLanguage} closeModal={this.closeModal} modalData={this.state.modalData} handleProjectScroll={this.handleProjectScroll}/>}
-          { this.state.isMobile &&
-            <div className={css('scroll-top-btn', {'is-visible': this.state.floatingMenu, 'is-arrived-0': this.state.fixScrollBtn0, 'is-arrived-1': this.state.fixScrollBtn1})} onClick={ev => scrollTo(0, 500)}>
-              <svg width="21px" height="21px" viewBox="0 0 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-                  <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-                      <g transform="translate(-33.000000, -246.000000)" fill="#000000">
-                          <path d="M41.96,246.784 L35.624,266.248 L33.8,266.248 L40.184,246.784 L41.96,246.784 Z M53.996,266.296 L52.244,266.296 L45.86,246.856 L47.66,246.856 L53.996,266.296 Z"></path>
-                      </g>
-                  </g>
-              </svg>
+          <div className={css('scroll-inner', {'is-index': index === 0})}>
+            <BackArrow index={this.state.index} hasScrolled={this.state.hasScrolled} arrowRotated={this.state.arrowRotated} />
+            <Header headerRef={el => this.headerRef = el} page={this.state.index} hasScrolled={this.state.hasScrolled}
+              animationEnded={this.state.animationEnded}
+              animationArrived={this.state.animationArrived}
+              facebook={facebook} instagram={instagram}
+              headerOpacity={this.state.headerOpacity} headerBlurred={this.state.headerBlurred} headerBlur={this.state.headerBlur} />
+            <div className={css('main-modal')}>
+              <HeaderFloating
+                floatingMenu={this.state.floatingMenu} page={this.state.index} isFooterFixed={this.state.isFooterFixed}
+                facebook={facebook} instagram={instagram} lang={this.state.lang} setLanguage={this.setLanguage} />
+              <SwipeableViews
+                ref='SwipeableViews'
+                animateHeight
+                action={hooks => this.updateHeight = hooks.updateHeight }
+                index={index} className={`is-active-slide-${index}`}>
+                <Main data={this.props.data} lang={lang} isFooterFixed={this.state.isFooterFixed}
+                  scroll={this.state.scrolled} filter={this.filter} handleResize={this.handleResize} fixScrollBtn={this.fixScrollBtn} toggleTags={this.toggleTags}/>
+                <ProjectList data={this.props.data} lang={lang}
+                  toggleTags={this.toggleTags} isFooterFixed={this.state.isFooterFixed}
+                  filtered={this.state.filtered} filter={this.filter} activeTag={this.state.activeTag}
+                  projectListRef={el => this.projectListRef = el}
+                  rotateArrow={this.rotateArrow}
+                  scroll={this.state.scrolled} handleResize={this.handleResize}
+                  setTagsWidth={this.setTagsWidth}
+                  fixScrollBtn={this.fixScrollBtn} />
+                <About data={this.props.data[lang].about} scroll={this.state.scrolled} isFooterFixed={this.state.isFooterFixed}             lang={this.state.lang} setLanguage={this.setLanguage} />
+                <Contact data={this.props.data[lang].contact} />
+              </SwipeableViews>
             </div>
-          }
-          <Footer page={this.state.index} footerOpacity={this.state.footerOpacity} footerBlur={this.state.footerBlur} />
+            { this.state.openModal && <Project openModal={this.state.openModal} lang={lang} setLanguage={this.setLanguage} closeModal={this.closeModal} modalData={this.state.modalData} handleProjectScroll={this.handleProjectScroll}/>}
+            { this.state.isMobile &&
+              <div className={css('scroll-top-btn', {'is-visible': this.state.floatingMenu, 'is-arrived-0': this.state.fixScrollBtn0, 'is-arrived-1': this.state.fixScrollBtn1})} onClick={ev => scrollTo(0, 500)}>
+                <svg width="21px" height="21px" viewBox="0 0 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+                    <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+                        <g transform="translate(-33.000000, -246.000000)" fill="#000000">
+                            <path d="M41.96,246.784 L35.624,266.248 L33.8,266.248 L40.184,246.784 L41.96,246.784 Z M53.996,266.296 L52.244,266.296 L45.86,246.856 L47.66,246.856 L53.996,266.296 Z"></path>
+                        </g>
+                    </g>
+                </svg>
+              </div>
+            }
+            <Footer page={this.state.index} footerOpacity={this.state.footerOpacity} footerBlur={this.state.footerBlur} />
+          </div>
         </div>
-      </div>
       </div>
     )
   }

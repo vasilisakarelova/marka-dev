@@ -85,7 +85,6 @@ export default class extends Component {
   }
 
   componentDidMount () {
-    let top = (window.pageYOffset || document.documentElement.scrollTop)  - (document.documentElement.clientTop || 0)
     setTimeout(() => {
       this.setState({
         top: 44
@@ -131,7 +130,7 @@ export default class extends Component {
                             {info}
                             <div className='project-inner-constructor-lang'>
                               {this.props.lang === 'ru'
-                                ? <span className='project-inner-constructor-lang-link' onClick={ev => this.setLanguage('en')}>(Read in Eglish)</span>
+                                ? <span className='project-inner-constructor-lang-link' onClick={ev => this.setLanguage('en')}>(Read in English)</span>
                                 : <span className='project-inner-constructor-lang-link' onClick={ev => this.setLanguage('ru')}>(Прочитать на русском)</span>
                               }
                             </div>
@@ -157,6 +156,8 @@ export default class extends Component {
                             </div>
                           </div>
                         )
+                      } else {
+                        return null
                       }
                     })
                   }

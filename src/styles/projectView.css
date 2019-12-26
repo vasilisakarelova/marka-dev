@@ -18,7 +18,7 @@
   }
 
   &.is-portrait .project-view-cover-wrap {
-    padding-top: 60vw;
+    padding-top: 110vw;
 
     img {
       height: 100%;
@@ -52,7 +52,7 @@
   &.on-project {
     &.is-portrait .project-view-cover-wrap {
       @media (max-width: 1023px) {
-        padding-top: 60vw;
+        padding-top: 110vw;
       }
 
       @media (min-width: 1024px) {

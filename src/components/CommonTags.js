@@ -8,13 +8,15 @@ export default class App extends Component {
         <div className='project-list-tags grid'>
           <div className='project-list-tags-container'>
             <div className='project-list-tags-inner'>
-              { (this.props.index === 1) && <div className={css('project-list-tags-item', {'is-active': this.props.activeTag === 'all'})} onClick={ev => this.props.filter('all')}>All</div>}
-              { this.props.tags.map((tag,idx) => {
-                  return (
-                    <div className={css('project-list-tags-item', {'is-active': this.props.activeTag === tag})} key={idx} onClick={ev => this.props.filter(tag)}>{tag}</div>
-                  )
-                })
-              }
+              <div className='project-list-tags-scroll'>
+                { (this.props.index === 1) && <div className={css('project-list-tags-item', {'is-active': this.props.activeTag === 'all'})} onClick={ev => this.props.filter('all')}>All</div>}
+                { this.props.tags.map((tag,idx) => {
+                    return (
+                      <div className={css('project-list-tags-item', {'is-active': this.props.activeTag === tag})} key={idx} onClick={ev => this.props.filter(tag)}>{tag}</div>
+                    )
+                  })
+                }
+              </div>
             </div>
           </div>
         </div>
