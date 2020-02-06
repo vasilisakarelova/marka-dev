@@ -1,6 +1,13 @@
 .contact-wrap {
   position: relative;
-  min-height: calc(calc(100vh - 80px - 44px - 55px)); /*footer, header 44px, MARKA 55px*/
+  min-height: calc(calc(100vh - 80px - 44px)); /*footer, header 44px, MARKA 55px*/
+
+  @media (max-width: 767px) {
+    position: fixed;
+    width: 100%;
+    height: calc((100 * var(--vh, 1vh)) - 80px - 44px);
+    min-height: 0;
+  }
 }
 
 .contact-container {

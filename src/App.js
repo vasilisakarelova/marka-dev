@@ -180,7 +180,7 @@ export default class App extends Component {
   }
 
   initRouting(dataEn, dataRu) {
-    page.base('/new')
+    // page.base('/new')
 
     page('/', (ctx, next) => {
       this.setState({
@@ -231,6 +231,8 @@ export default class App extends Component {
         headerBlurred: false
       })
 
+      let vh = window.innerHeight * 0.01
+      document.documentElement.style.setProperty('--vh', `${vh}px`)
       document.documentElement.classList.remove('is-locked')
     })
 
@@ -254,10 +256,10 @@ export default class App extends Component {
   }
 
   filter (tag) {
-    page('/new/projects')
+    page('/projects')
 
     const result = (tag === 'all') ? [] : this.props.data[this.state.lang].projects.filter(project => {
-      return project.tags === tag
+      return project.tags.includes(tag)
     })
 
     this.setState(prevState => ({
@@ -360,7 +362,7 @@ export default class App extends Component {
                 </svg>
               </div>
             }
-            <Footer page={this.state.index} footerOpacity={this.state.footerOpacity} footerBlur={this.state.footerBlur} />
+            <Footer page={this.state.index} footerOpacity={this.state.footerOpacity} footerBlur={this.state.footerBlur} facebook={facebook} instagram={instagram} />
           </div>
         </div>
       </div>

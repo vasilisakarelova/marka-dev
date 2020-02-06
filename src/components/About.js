@@ -56,7 +56,7 @@ export default class extends Component {
                   <div className='about-intro-container' dangerouslySetInnerHTML={{__html: this.props.data.intro}}></div>
                   <div className='about-lang'>
                     {this.props.lang === 'ru'
-                      ? <span className='project-inner-constructor-lang-link' onClick={ev => this.setLanguage('en')}>(Read in Eglish)</span>
+                      ? <span className='project-inner-constructor-lang-link' onClick={ev => this.setLanguage('en')}>(Read in English)</span>
                       : <span className='project-inner-constructor-lang-link' onClick={ev => this.setLanguage('ru')}>(Прочитать на русском)</span>
                     }
                   </div>

@@ -17,7 +17,7 @@ export default class extends Component {
 
   componentDidMount () {
     const options = {
-      strings: ["\\//\\/\\\\\\\\\/", "/\\/\\ARKA", "M/\\RKA", "_MA|^KA_", "MAR|&#60;A", "MARK/\\", "MARKA"],
+      strings: ["\\//\\/\\\\\\\\\/", "/\\/\\arka", "M/\\rka", "Ma|^ka", "Mar|&#60;a", "Mark/\\", "Marka"],
       typeSpeed: 30,
       showCursor: false,
       onStringTyped: (arrayPos, self) => {

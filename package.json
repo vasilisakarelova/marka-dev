@@ -2,7 +2,7 @@
   "name": "nickel-react",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://marka.moscow/new/",
+  "homepage": "https://marka.moscow/",
   "dependencies": {
     "autoprefixer": "^7.1.5",
     "classnames": "^2.2.5",

@@ -45,7 +45,7 @@ export default class extends Component {
 
     return (
       <div className={css('project-view-wrap', `is-${data.cover.orientation}`, {'on-project': !this.props.isBlur, 'on-index': this.props.isBlur, 'is-blur': this.props.isBlur, 'is-visible': this.state.isVisible})} ref='preview'>
-        <Link to={`/new/${data.url}`} className='project-view-link'>
+        <Link to={`/${data.url}`} className='project-view-link'>
           <div className='project-view-container'>
             <div className='project-view-cover-wrap'>
               <img className='project-view-cover' alt='cover' src={data.cover.src}/>

@@ -11,6 +11,7 @@
   &.is-inversed {
     opacity: 1 !important;
     filter: none !important;
+    z-index: 3;
   }
 }
 

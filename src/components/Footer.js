@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import * as css from 'classnames'
 
 export default class extends Component {
-  componentDidMount () {}
-
   render () {
     return (
       <div className={css('footer-wrap', {'is-inversed': this.props.page === 3})} style={{opacity: this.props.footerOpacity, filter: `blur(${this.props.footerBlur}px)`}}>
