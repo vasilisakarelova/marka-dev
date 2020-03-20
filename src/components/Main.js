@@ -60,7 +60,7 @@ export default class extends Component {
                 </div>
               </div>
               <div className='main-list-container grid'>
-                <HeaderFooterFloating isStatic={true} isVisible={this.props.isFooterFixed} />
+                {/*<HeaderFooterFloating isStatic={true} isVisible={this.props.isFooterFixed} />*/}
                 <div className='main-list-container-inner grid-menor'>
                   { highlights.map((project,idx) => {
                       let isLast = (idx + 1 === this.props.data[lang].highlights.length)

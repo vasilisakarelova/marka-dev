@@ -17,7 +17,7 @@ export default class extends Component {
 
   componentDidMount () {
     const options = {
-      strings: ["\\//\\/\\\\\\\\\/", "/\\/\\arka", "M/\\rka", "Ma|^ka", "Mar|&#60;a", "Mark/\\", "Marka"],
+      strings: ["\\//\\/\\\\\\\\\/", "/\\/\\arka", "m/\\rka", "ma|^ka", "mar|&#60;a", "mark/\\", "marka"],
       typeSpeed: 30,
       showCursor: false,
       onStringTyped: (arrayPos, self) => {
@@ -65,6 +65,12 @@ export default class extends Component {
           <div className={css('header-block-wrap', {'is-blurred': this.props.headerBlurred})} style={{opacity: this.props.headerOpacity, filter: `blur(${this.props.headerBlur}px)`}}>
             <div className='header-block hide-on-mob'><a className='header-block-link-small' target='_blank' href={this.props.facebook}>Fb</a></div>
             <div className='header-block hide-on-mob'><a className='header-block-link-small' target='_blank' href={this.props.instagram}>Inst</a></div>
+            <div className='header-block'>
+              {this.props.lang === 'ru'
+                ? <span className='header-block-link-small is-btn' onClick={ev => this.props.setLanguage('en')}>{(this.props.floatingMenu || this.state.isMobile) ? 'En' : 'English'}</span>
+                : <span className='header-block-link-small is-btn' onClick={ev => this.props.setLanguage('ru')}>{(this.props.floatingMenu || this.state.isMobile) ? 'Ru' : 'Russian'}</span>
+              }
+            </div>
           </div>
         </div>
         <div className={css('header-block-logo-wrap', {'is-animation-ended': this.state.animationEnded, 'is-arrived': this.state.animationArrived})}

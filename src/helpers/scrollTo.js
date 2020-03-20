@@ -2,9 +2,9 @@ import getBrowser from './getBrowser.js'
 
 export default (to, duration) => {
   let element = document.documentElement
-  if (getBrowser().name === 'Safari') {
-    element = document.body
-  }
+  // if (getBrowser().name === 'Safari') {
+  //   element = document.body
+  // }
   const start = element.scrollTop
   const change = to - start
   const startDate = +new Date()

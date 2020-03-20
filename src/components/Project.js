@@ -17,7 +17,6 @@ export default class extends Component {
     this.hideScroll = this.hideScroll.bind(this)
     this.closeModal = this.closeModal.bind(this)
     this.handleProjectScroll = this.handleProjectScroll.bind(this)
-    this.setLanguage = this.setLanguage.bind(this)
   }
 
   handleProjectScroll (ev) {
@@ -92,7 +91,7 @@ export default class extends Component {
     }, 500)
   }
 
-  setLanguage (lang) {
+  setLanguage = (lang) => {
     this.props.setLanguage(lang)
   }
 

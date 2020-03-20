@@ -8,9 +8,6 @@ import 'intersection-observer'
 import App from './App'
 import { unregister } from './registerServiceWorker'
 
-// import testEn from './testEn.js'
-// import testRu from './testRu.js'
-
 const origin = window.location.origin
 
 fetch(`${origin}/admin/api`)
@@ -43,6 +40,9 @@ fetch(`${origin}/admin/api`)
 
   })
 
+// import testEn from './testEn.js'
+// import testRu from './testRu.js'
+//
 // let data = {
 //   ru: testRu,
 //   en: testEn

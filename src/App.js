@@ -44,7 +44,6 @@ export default class App extends Component {
 
     this.initRouting = this.initRouting.bind(this)
     this.handleResize = this.handleResize.bind(this)
-    this.setLanguage = this.setLanguage.bind(this)
     this.closeModal = this.closeModal.bind(this)
     this.filter = this.filter.bind(this)
     this.fixScrollBtn = this.fixScrollBtn.bind(this)
@@ -272,7 +271,7 @@ export default class App extends Component {
     }, 100)
   }
 
-  setLanguage (newLang) {
+  setLanguage = (newLang) => {
     this.setState({
       lang: newLang
     })
@@ -316,6 +315,8 @@ export default class App extends Component {
     const { index, lang } = this.state
     const { facebook, instagram } = this.props.data[lang].contact
 
+    this.props.data[lang].tags.sort((a, b) => a.length - b.length)
+
     return (
       <div>
         { this.state.toggleTags && <CommonTags index={this.state.index} activeTag={this.state.activeTag} filter={this.filter} tags={this.props.data[lang].tags} /> }
@@ -326,11 +327,12 @@ export default class App extends Component {
               animationEnded={this.state.animationEnded}
               animationArrived={this.state.animationArrived}
               facebook={facebook} instagram={instagram}
+              lang={this.state.lang} setLanguage={this.setLanguage}
               headerOpacity={this.state.headerOpacity} headerBlurred={this.state.headerBlurred} headerBlur={this.state.headerBlur} />
             <div className={css('main-modal')}>
-              <HeaderFloating
+              {/*<HeaderFloating
                 floatingMenu={this.state.floatingMenu} page={this.state.index} isFooterFixed={this.state.isFooterFixed}
-                facebook={facebook} instagram={instagram} lang={this.state.lang} setLanguage={this.setLanguage} />
+                facebook={facebook} instagram={instagram} />*/}
               <SwipeableViews
                 ref='SwipeableViews'
                 animateHeight
@@ -346,7 +348,7 @@ export default class App extends Component {
                   scroll={this.state.scrolled} handleResize={this.handleResize}
                   setTagsWidth={this.setTagsWidth}
                   fixScrollBtn={this.fixScrollBtn} />
-                <About data={this.props.data[lang].about} scroll={this.state.scrolled} isFooterFixed={this.state.isFooterFixed}             lang={this.state.lang} setLanguage={this.setLanguage} />
+                <About data={this.props.data[lang].about} scroll={this.state.scrolled} isFooterFixed={this.state.isFooterFixed} lang={this.state.lang} setLanguage={this.setLanguage} />
                 <Contact data={this.props.data[lang].contact} />
               </SwipeableViews>
             </div>
