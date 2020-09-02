@@ -314,7 +314,6 @@ export default class App extends Component {
   render() {
     const { index, lang } = this.state
     const { facebook, instagram } = this.props.data[lang].contact
-
     this.props.data[lang].tags.sort((a, b) => a.length - b.length)
 
     return (
