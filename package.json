@@ -10,7 +10,7 @@
     "cssnano": "^3.10.0",
     "intersection-observer": "^0.5.1",
     "jquery": "^3.3.1",
-    "jquery-ui": "^1.12.1",
+    "jquery-ui": "^1.13.0",
     "page": "^1.7.1",
     "postcss-cli": "^4.1.1",
     "postcss-import": "^11.0.0",
